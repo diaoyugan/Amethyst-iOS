@@ -1,7 +1,6 @@
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #import "authenticator/BaseAuthenticator.h"
 #import "AFNetworking.h"
-#import "ALTServerConnection.h"
 #import "CustomControlsViewController.h"
 #import "DownloadProgressViewController.h"
 #import "JavaGUIViewController.h"
@@ -428,7 +427,6 @@ static void *ProgressObserverContext = &ProgressObserverContext;
     BOOL isLiveContainer = getenv("LC_HOME_PATH") != NULL;
 
     if (isJITEnabled(false)) {
-        [ALTServerManager.sharedManager stopDiscovering];
         handler();
         return;
     } else if (hasTrollStoreJIT) {

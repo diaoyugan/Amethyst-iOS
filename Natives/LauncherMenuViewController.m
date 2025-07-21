@@ -1,7 +1,6 @@
 #import "authenticator/BaseAuthenticator.h"
 #import "AccountListViewController.h"
 #import "AFNetworking.h"
-#import "ALTServerConnection.h"
 #import "LauncherNavigationController.h"
 #import "LauncherMenuViewController.h"
 #import "LauncherNewsViewController.h"
@@ -143,7 +142,7 @@
         } else if (@available(iOS 17.0, *)) {
             // enabling JIT for 17.0+ is done when we actually launch the game
         } else {
-            [self enableJITWithAltKit];
+            [self enableJITWithStikDebug];
         }
     } else if (!NSProcessInfo.processInfo.macCatalystApp && !getenv("SIMULATOR_DEVICE_NAME")) {
         [self displayProgress:localize(@"login.jit.fail", nil)];
@@ -347,28 +346,10 @@
     }
 }
 
-- (void)enableJITWithAltKit {
-    [ALTServerManager.sharedManager startDiscovering];
-    [ALTServerManager.sharedManager autoconnectWithCompletionHandler:^(ALTServerConnection *connection, NSError *error) {
-        if (error) {
-            NSLog(@"[AltKit] Could not auto-connect to server. %@", error.localizedRecoverySuggestion);
-            [self displayProgress:localize(@"login.jit.fail", nil)];
-            [self displayProgress:nil];
-        }
-        [connection enableUnsignedCodeExecutionWithCompletionHandler:^(BOOL success, NSError *error) {
-            if (success) {
-                NSLog(@"[AltKit] Successfully enabled JIT compilation!");
-                [ALTServerManager.sharedManager stopDiscovering];
-                [self displayProgress:localize(@"login.jit.enabled", nil)];
-                [self displayProgress:nil];
-            } else {
-                NSLog(@"[AltKit] Error enabling JIT: %@", error.localizedRecoverySuggestion);
-                [self displayProgress:localize(@"login.jit.fail", nil)];
-                [self displayProgress:nil];
-            }
-            [connection disconnect];
-        }];
-    }];
+- (void)enableJITWithStikDebug {
+    if(@available(iOS 17.4, *)) {
+        // TODO
+    }
 }
 
 @end

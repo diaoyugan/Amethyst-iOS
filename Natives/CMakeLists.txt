@@ -34,7 +34,7 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -rpath @loader_path 
 
 # EXT: stub library, delete after compile awt_xawt
 add_library(awt_headless SHARED
-  awt_xawt/empty.m
+  awt_xawt/empty.mx
 )
 target_link_libraries(awt_headless)
 

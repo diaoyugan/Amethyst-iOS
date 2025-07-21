@@ -5,6 +5,9 @@
 	path = Natives/external/fishhook
 	url = https://github.com/khanhduytran0/fishhook
 	branch = jev/main
+[submodule "Natives/external/UnzipKit"]
+	path = Natives/external/UnzipKit
+	url = https://github.com/abbeycode/UnzipKit
 [submodule "Natives/external/AFNetworking"]
 	path = Natives/external/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking
