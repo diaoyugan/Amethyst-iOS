@@ -19,28 +19,31 @@ include_directories(
   "external/DBNumberedSlider/Classes"
   "external/NRFileManager"
   "external/UnzipKit"
+  "external/UnzipKit/Lib/MiniZip"
+  "external/UnzipKit/Source"
+  "external/UnzipKit/Source/Extensions"
   "external/fishhook"
   "external/lzma"
   "external/mesa"
-  "external/AltKit"
   "external/Apple"
   "external/ballpa1n"
   "external/ballpa1n/wrapped"
   "external/mach"
 )
+add_compile_options(-fmodules)
 
 # For cacio support library
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -rpath @loader_path -rpath @executable_path/java_runtimes/java-8-openjdk/lib -rpath /usr/lib/jvm/java-8-openjdk/lib")
 
 # EXT: stub library, delete after compile awt_xawt
 add_library(awt_headless SHARED
-  awt_xawt/empty.mx
+  ../awt_xawt/empty.m
 )
 target_link_libraries(awt_headless)
 
 # EXT: cacio support library
 add_library(awt_xawt SHARED
-  awt_xawt/xawt_fake.m
+  ../awt_xawt/xawt_fake.m
 )
 target_link_libraries(awt_xawt
   "-L'${CMAKE_CURRENT_LIST_DIR}/build'"
@@ -91,6 +94,14 @@ add_library(AmethystAccountJNI SHARED
   authenticator/MinecraftAccountJNI.m
 )
 target_link_libraries(AmethystAccountJNI)
+
+# TinyFD implementation
+add_library(lwjgl_tinyfd SHARED
+  tinyfd_bridge.m
+)
+target_link_libraries(lwjgl_tinyfd
+  "-framework UIKit"
+)
 
 # Angel Aura Amethyst
 add_executable(AngelAuraAmethyst
@@ -174,7 +185,17 @@ add_executable(AngelAuraAmethyst
   egl_bridge.m
   input_bridge_v3.m
   ios_uikit_bridge.m
+  narrator_bridge.m
   utils.m
+  
+  # UnzipKit
+  external/UnzipKit/Source/UZKArchive.m
+  external/UnzipKit/Source/UZKFileInfo.m
+  external/UnzipKit/Source/Extensions/NSURL+UnzipKitExtensions.m
+  external/UnzipKit/Lib/MiniZip/ioapi.c
+  external/UnzipKit/Lib/MiniZip/mztools.c
+  external/UnzipKit/Lib/MiniZip/unzip.c
+  external/UnzipKit/Lib/MiniZip/zip.c
 )
 
 if("${CMAKE_HOST_SYSTEM_NAME}" MATCHES "Linux|^GNU$|Android")
@@ -186,10 +207,8 @@ target_link_libraries(AngelAuraAmethyst
   lzma
   "-F'${CMAKE_CURRENT_LIST_DIR}/build'"
   "-F'${CMAKE_CURRENT_LIST_DIR}/resources/Frameworks'"
-  "-framework AltKit"
   "-framework AuthenticationServices"
   "-framework AVFoundation"
-  "-framework CAltKit"
   "-framework CoreFoundation"
   "-framework CoreGraphics"
   "-framework CoreImage"
@@ -199,7 +218,6 @@ target_link_libraries(AngelAuraAmethyst
   "-framework QuartzCore"
   "-framework UIKit"
   "-framework UniformTypeIdentifiers"
-  "-framework UnzipKit"
   "-framework WebKit"
   "-weak_framework SafariServices"
 )

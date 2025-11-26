@@ -98,7 +98,6 @@
 		E1B8F9982E2E6C810064B100 /* liblwjgl_nanovg.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9782E2E6C6A0064B100 /* liblwjgl_nanovg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F9992E2E6C810064B100 /* liblwjgl_opengl.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9792E2E6C6A0064B100 /* liblwjgl_opengl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F99A2E2E6C810064B100 /* liblwjgl_stb.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F97A2E2E6C6A0064B100 /* liblwjgl_stb.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E1B8F99B2E2E6C810064B100 /* liblwjgl_tinyfd.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F97B2E2E6C6A0064B100 /* liblwjgl_tinyfd.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F99C2E2E6C810064B100 /* liblwjgl_vma.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F97C2E2E6C6A0064B100 /* liblwjgl_vma.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F99D2E2E6C810064B100 /* libMoltenVK.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F97D2E2E6C6A0064B100 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F99E2E2E6C810064B100 /* libopenal.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F97E2E2E6C6A0064B100 /* libopenal.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -307,7 +306,6 @@
 				E1B8F9982E2E6C810064B100 /* liblwjgl_nanovg.dylib in Embed Frameworks */,
 				E1B8F9992E2E6C810064B100 /* liblwjgl_opengl.dylib in Embed Frameworks */,
 				E1B8F99A2E2E6C810064B100 /* liblwjgl_stb.dylib in Embed Frameworks */,
-				E1B8F99B2E2E6C810064B100 /* liblwjgl_tinyfd.dylib in Embed Frameworks */,
 				E1B8F99C2E2E6C810064B100 /* liblwjgl_vma.dylib in Embed Frameworks */,
 				E1B8F99D2E2E6C810064B100 /* libMoltenVK.dylib in Embed Frameworks */,
 				E1B8F99E2E2E6C810064B100 /* libopenal.dylib in Embed Frameworks */,

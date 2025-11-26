@@ -58,6 +58,7 @@ extern BOOL _UISolariumEnabled(void) __attribute__((weak_import));
 @interface UIWindow(global)
 + (UIWindow *)mainWindow;
 + (UIWindow *)externalWindow;
+- (UIViewController *)visibleViewController;
 @end
 
 @protocol _UIPointerInteractionDriver<NSObject>

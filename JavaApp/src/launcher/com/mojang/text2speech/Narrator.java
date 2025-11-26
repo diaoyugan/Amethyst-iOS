@@ -1,7 +1,9 @@
 package com.mojang.text2speech;
 
 public interface Narrator {
-    void say(final String msg, final boolean interrupt);
+    void say(String msg);
+    void say(String msg, boolean interrupt);
+    void say(String msg, boolean interrupt, float volume);
 
     void clear();
 
@@ -10,7 +12,7 @@ public interface Narrator {
     void destroy();
 
     static Narrator getNarrator() {
-        return new NarratorDummy();
+        return new NarratorOSX();
     }
 
     static void setJNAPath(String sep) {
