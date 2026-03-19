@@ -183,6 +183,7 @@
 "preference.title.renderer.debug.auto" = "Авто: gl4es или ANGLE";
 "preference.title.renderer.debug.gl4es" = "gl4es 1.1.4 — обеспечивает OpenGL 2.1";
 "preference.title.renderer.debug.angle" = "ANGLE (1.17+) — обеспечивает OpenGL 3.2 (ограниченно, Core Profile)";
+"preference.title.renderer.debug.mg" = "MobileGlues (1,17+) - экспортирует OpenGL 4,0, ЭКСПЕРИМЕНТАЛЬНОЕ";
 "preference.title.renderer.debug.zink" = "Zink (Mesa 21.0) — обеспечивает OpenGL 4.1";
 
 "preference.detail.renderer" = "Выберите используемую графическую реализацию OpenGL. Zink временно отключён для диагностики ошибок для iOS 16 и новее.";
@@ -259,6 +260,7 @@
 "preference.detail.custom_env" = "Эта функция ещё в разработке. Пока что вручную создайте и отредактируйте файл custom_env.txt.";
 
 "preference.title.debug_always_attached_jit" = "Оставайтесь подключенными к StikDebug";
+"preference.detail.debug_always_attached_jit" = "Включите эту опцию, если ваши моды требуют загрузки .dylib во время выполнения. При включении этой опции режим PiP в StikDebug не должен закрываться во время игры.";
 "preference.title.debug_skip_wait_jit" = "Пропускать этап ожидания JIT";
 "preference.detail.debug_skip_wait_jit" = "Без JIT это запускать игру не позволит, однако исправит ошибку запуска на некоторых устройствах с jailbreak за счёт пропуска проверки отладчика.";
 "preference.title.debug_ipad_ui" = "Разблокировать интерфейс iPadOS";
