@@ -99,6 +99,7 @@
 "login.warn.message.ios19_jitdead" = "iOS의 JIT 활성화 제한 문제로 인해 Amethyst가 현재 버전에서는 작동하지 않습니다. 이 문제를 해결할 새로운 방법을 연구하고 있습니다.\n\n'확인'을 누르면 앱이 종료됩니다.";
 
 "login.warn.title.demomode" = "이 계정은 데모 버전 전용입니다";
+"login.warn.message.demomode" = "오프라인 모드와 로컬 모드의 대안으로, 1.3.1과 최신 버전에 소개된 데모 모드는 게임을 소유하지 않은 마이크로소프트 계정으로 로그인하여 자바 체험판을 플레이할 수 있게 합니다. 공식 런처는 이러한 제약을 두지 않으므로 이전 버전은 모든 게임을 포함합니다. 저희 웹사이트에 접속하여 오프라인 모드에서의 변경 사항을 확인해 보세요.";
 
 "login.warn.title.localmode" = "오프라인 모드는 이제 로컬 모드입니다.";
 "login.warn.message.localmode" = "당신은 설치된 버전을 계속 플레이 할 수 있지만, 더 이상 마인크래프트를 정식 계정 없이 다운로드할 수 없습니다. 로컬 계정 또는 마인크래프트를 얻는 다른 방법들에 관련해서는 지원이 제공되지 않을 것입니다.";
@@ -132,8 +133,10 @@
 "preference.title.confirm" = "확실한가요?";
 
 "preference.title.game_directory" = "게임 디렉토리";
+"preference.title.confirm.delete_game_directory" = "인스턴스 %@는 영원히 삭제될 것이며 복구 될 수 없습니다.";
 "preference.multidir.add_directory" = "게임 디렉터리 추가";
 "preference.title.cosmetica" = "Cosmetica 망토";
+"preference.detail.cosmetica" = "Cosmetica (이전 Arc) 망토를 허용합니다. 자세한 내용은 https://cosmetica.cc를 참조하세요. OptiFine을 필요로 합니다";
 "preference.title.debug_logging" = "디버그 로깅";
 "preference.detail.debug_logging" = "내부 설정 및 동작을 latestlog.txt 파일에 기록합니다. 이는 개발진의 문제 해결에 도움을 주지만, 로그가 빈번히 기록될수록 Minecraft가 더 느리게 동작할 수 있습니다.";
 "preference.title.appicon" = "앱 아이콘 설정";
@@ -142,8 +145,11 @@
 "preference.title.done.reset_warnings" = "모든 경고가 리셋되었습니다";
 
 "preference.title.reset_settings" = "모든 설정 초기화";
+"preference.title.done.reset_settings" = "모든 기본 설정들이 복원되었습니다.";
 
 "preference.title.erase_demo_data" = "데모 게임 데이터 삭제";
+"preference.title.confirm.erase_demo_data" = "이것은 모든 데모 게임 버전들과 데모 계정에 사용되었던 데이터를 지울 것 입니다.";
+"preference.title.done.erase_demo_data" = "모든 데모 게임 데이터가 지워졌습니다.";
 
 "preference.title.renderer" = "렌더러";
 
@@ -177,7 +183,16 @@
 "preference.title.hardware_hide" = "컨트롤러 하드웨어 연결 시 화면 컨트롤 숨김";
 "preference.title.recording_hide" = "조작을 화면 녹화에서 숨기기";
 "preference.title.gesture_mouse" = "마우스 제스처";
+"preference.title.mouse_scale" = "마우스 크기(%)";
+"preference.detail.mouse_scale" = "가상 마우스의 크기를 변경하기";
+"preference.title.mouse_speed" = "마우스 속도(%)";
+"preference.detail.mouse_speed" = "가상 마우스의 속도를 변경하기";
 "preference.title.virtmouse_enable" = "가상 마우스";
+"preference.detail.virtmouse_enable" = "이 옵션을 활성화 해 가상 마우스가 켜진 상태로 시작하기";
+
+"preference.title.gyroscope_enable" = "자이로스코프 조작 활성화 하기";
+"preference.detail.gyroscope_invert_x_axis" = "자이로스코프의 X축을 뒤집음";
+"preference.title.confirm.delete_runtime" = "%@는 삭제될 것입니다";
 "preference.manage_runtime.header.default" = "선호 Java 버전";
 "preference.manage_runtime.default.1165" = "1.16.5 이하";
 "preference.manage_runtime.default.117" = "1.17 이상";
