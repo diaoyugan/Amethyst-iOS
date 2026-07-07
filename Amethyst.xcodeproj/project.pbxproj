@@ -6,6 +6,22 @@
 	objectVersion = 71;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		E184AA232FFD13610014F9A3 /* MobileGluesPrepare */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E184AA242FFD13610014F9A3 /* Build configuration list for PBXAggregateTarget "MobileGluesPrepare" */;
+			buildPhases = (
+				E184AA292FFD13840014F9A3 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = MobileGluesPrepare;
+			packageProductDependencies = (
+			);
+			productName = idk;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		78CD7DDC2E36EE68003814B5 /* AmethystAccountJNI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */; };
 		78CD7DDD2E36EE68003814B5 /* AmethystAccountJNI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -85,7 +101,7 @@
 		E11CBCB62E2DE8AF00248B71 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE62E27EEF500BA8320 /* utils.m */; };
 		E184A9F22FFCB2130014F9A3 /* MinecraftOptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */; };
 		E184A9F62FFCB2690014F9A3 /* mach_excServer.c in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F42FFCB2690014F9A3 /* mach_excServer.c */; };
-		E184AA0B2FFCDADD0014F9A3 /* libmobileglues.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E184AA0A2FFCDADD0014F9A3 /* libmobileglues.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E184AA372FFD1FB30014F9A3 /* libmobileglues.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1B8F8062E2E5CA30064B100 /* BaseAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */; };
 		E1B8F8072E2E5CA30064B100 /* MicrosoftAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */; };
 		E1B8F8082E2E5CA30064B100 /* LocalAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */; };
@@ -252,6 +268,20 @@
 			remoteGlobalIDString = E184AA122FFCDCFC0014F9A3;
 			remoteInfo = JavaApp;
 		};
+		E184AA272FFD137E0014F9A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054957C12986E8DC00EFD4CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E184AA232FFD13610014F9A3;
+			remoteInfo = MobileGluesPrepare;
+		};
+		E184AA342FFD1D350014F9A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054957C12986E8DC00EFD4CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E184AA2E2FFD1CB10014F9A3;
+			remoteInfo = Cleanup;
+		};
 		E1ECC7882E2DF2A400557F34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E11CBB282E2DB8D400248B71 /* DBNumberedSlider.xcodeproj */;
@@ -313,7 +343,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E184AA0B2FFCDADD0014F9A3 /* libmobileglues.dylib in Embed Frameworks */,
 				E1ECC8722E2DF67800557F34 /* AFNetworking.framework in Embed Frameworks */,
 				E1B8F9962E2E6C810064B100 /* libGLESv2.framework in Embed Frameworks */,
 				E1B8F9922E2E6C810064B100 /* libEGL.framework in Embed Frameworks */,
@@ -325,6 +354,7 @@
 				E1B8F9992E2E6C810064B100 /* liblwjgl_opengl.dylib in Embed Frameworks */,
 				E1B8F99A2E2E6C810064B100 /* liblwjgl_stb.dylib in Embed Frameworks */,
 				E1B8F99C2E2E6C810064B100 /* liblwjgl_vma.dylib in Embed Frameworks */,
+				E184AA372FFD1FB30014F9A3 /* libmobileglues.dylib in Embed Frameworks */,
 				E1B8F99D2E2E6C810064B100 /* libMoltenVK.dylib in Embed Frameworks */,
 				E1B8F99E2E2E6C810064B100 /* libopenal.dylib in Embed Frameworks */,
 				E1B8F99F2E2E6C810064B100 /* libOSMesa.8.dylib in Embed Frameworks */,
@@ -562,7 +592,7 @@
 		E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MinecraftOptionUtils.m; path = ../Natives/MinecraftOptionUtils.m; sourceTree = "<group>"; };
 		E184A9F32FFCB2690014F9A3 /* mach_excServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_excServer.h; sourceTree = "<group>"; };
 		E184A9F42FFCB2690014F9A3 /* mach_excServer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mach_excServer.c; sourceTree = "<group>"; };
-		E184AA0A2FFCDADD0014F9A3 /* libmobileglues.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmobileglues.dylib; path = ../../../Natives/build/libmobileglues.dylib; sourceTree = "<group>"; };
+		E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmobileglues.dylib; path = ../../../Natives/build/mobileglues/libmobileglues.dylib; sourceTree = "<group>"; };
 		E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseAuthenticator.m; path = Natives/authenticator/BaseAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalAuthenticator.m; path = Natives/authenticator/LocalAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MicrosoftAuthenticator.m; path = Natives/authenticator/MicrosoftAuthenticator.m; sourceTree = SOURCE_ROOT; };
@@ -1193,7 +1223,7 @@
 				E1B8F97A2E2E6C6A0064B100 /* liblwjgl_stb.dylib */,
 				E1B8F97B2E2E6C6A0064B100 /* liblwjgl_tinyfd.dylib */,
 				E1B8F97C2E2E6C6A0064B100 /* liblwjgl_vma.dylib */,
-				E184AA0A2FFCDADD0014F9A3 /* libmobileglues.dylib */,
+				E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */,
 				E1B8F97D2E2E6C6A0064B100 /* libMoltenVK.dylib */,
 				E1B8F97E2E2E6C6A0064B100 /* libopenal.dylib */,
 				E1B8F97F2E2E6C6A0064B100 /* libOSMesa.8.dylib */,
@@ -2019,13 +2049,14 @@
 /* Begin PBXLegacyTarget section */
 		E184AA0C2FFCDBA10014F9A3 /* MobileGlues */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-c '/opt/homebrew/bin/gmake \\$([[ \"$ACTION\" = \"clean\" ]] && echo clean || echo dep_mg)'";
+			buildArgumentsString = "-C Natives/build/mobileglues $(MAKE_ACTION)";
 			buildConfigurationList = E184AA0D2FFCDBA10014F9A3 /* Build configuration list for PBXLegacyTarget "MobileGlues" */;
 			buildPhases = (
 			);
-			buildToolPath = bash;
-			buildWorkingDirectory = "$(SRCROOT)";
+			buildToolPath = "$(MAKE_CMAKE_PATH)/gmake";
+			buildWorkingDirectory = "";
 			dependencies = (
+				E184AA282FFD137E0014F9A3 /* PBXTargetDependency */,
 			);
 			name = MobileGlues;
 			packageProductDependencies = (
@@ -2035,12 +2066,12 @@
 		};
 		E184AA122FFCDCFC0014F9A3 /* JavaApp */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-c '/opt/homebrew/bin/gmake -j\\$(sysctl -n hw.ncpu) \\$([[ \"$ACTION\" = \"clean\" ]] && echo clean || echo java)'";
+			buildArgumentsString = "-C JavaApp $(MAKE_ACTION)";
 			buildConfigurationList = E184AA132FFCDCFC0014F9A3 /* Build configuration list for PBXLegacyTarget "JavaApp" */;
 			buildPhases = (
 			);
-			buildToolPath = bash;
-			buildWorkingDirectory = "$(SRCROOT)";
+			buildToolPath = "$(MAKE_CMAKE_PATH)/gmake";
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = JavaApp;
@@ -2048,6 +2079,22 @@
 			);
 			passBuildSettingsInEnvironment = 1;
 			productName = JavaApp;
+		};
+		E184AA2E2FFD1CB10014F9A3 /* Cleanup */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-c \"$(CLEAN_COMMAND)\"";
+			buildConfigurationList = E184AA2F2FFD1CB10014F9A3 /* Build configuration list for PBXLegacyTarget "Cleanup" */;
+			buildPhases = (
+			);
+			buildToolPath = bash;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Cleanup;
+			packageProductDependencies = (
+			);
+			passBuildSettingsInEnvironment = 1;
+			productName = Cleanup;
 		};
 /* End PBXLegacyTarget section */
 
@@ -2114,6 +2161,7 @@
 				78CD7DEB2E36EE84003814B5 /* PBXTargetDependency */,
 				E184AA112FFCDCA90014F9A3 /* PBXTargetDependency */,
 				E184AA1D2FFCDD7A0014F9A3 /* PBXTargetDependency */,
+				E184AA352FFD1D350014F9A3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E184A9D92FFCAFA70014F9A3 /* xcconfigs */,
@@ -2168,6 +2216,12 @@
 						CreatedOnToolsVersion = 26.0;
 					};
 					E184AA122FFCDCFC0014F9A3 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					E184AA232FFD13610014F9A3 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					E184AA2E2FFD1CB10014F9A3 = {
 						CreatedOnToolsVersion = 26.0;
 					};
 					E1ECC8692E2DF67800557F34 = {
@@ -2250,8 +2304,10 @@
 				78CD7DD52E36EE68003814B5 /* AmethystAccountJNI */,
 				78CD7DE52E36EE84003814B5 /* awt_xawt */,
 				E1ECC8692E2DF67800557F34 /* AFNetworking */,
+				E184AA232FFD13610014F9A3 /* MobileGluesPrepare */,
 				E184AA0C2FFCDBA10014F9A3 /* MobileGlues */,
 				E184AA122FFCDCFC0014F9A3 /* JavaApp */,
+				E184AA2E2FFD1CB10014F9A3 /* Cleanup */,
 			);
 		};
 /* End PBXProject section */
@@ -2375,6 +2431,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=/opt/homebrew/bin:$PATH\ngmake jre\n\n# Copy awt_xawt\nawtpath=${BUILT_PRODUCTS_DIR}/awt_xawt.framework/awt_xawt \njrepath=${SRCROOT}/depends\ncp $awtpath $jrepath/java-8-openjdk/lib/libawt_xawt.dylib\ncp $awtpath $jrepath/java-17-openjdk/lib/libawt_xawt.dylib\ncp $awtpath $jrepath/java-21-openjdk/lib/libawt_xawt.dylib\n";
 			showEnvVarsInLog = 0;
+		};
+		E184AA292FFD13840014F9A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Natives/build/mobileglues/libmobileglues.dylib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$MAKE_CMAKE_PATH/cmake \\\n        -S Natives/external/MobileGlues/src/main/cpp \\\n        -B Natives/build/mobileglues \\\n        -DMACOS=\"1\" \\\n        -DCMAKE_CROSSCOMPILING=true \\\n        -DCMAKE_SYSTEM_NAME=Darwin \\\n        -DCMAKE_SYSTEM_PROCESSOR=aarch64 \\\n        -DCMAKE_OSX_SYSROOT=\"$SDKROOT\" \\\n        -DCMAKE_OSX_ARCHITECTURES=arm64 \\\n        -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \\\n        -DCMAKE_C_FLAGS=\"-arch arm64\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2528,6 +2602,16 @@
 			isa = PBXTargetDependency;
 			target = E184AA122FFCDCFC0014F9A3 /* JavaApp */;
 			targetProxy = E184AA1C2FFCDD7A0014F9A3 /* PBXContainerItemProxy */;
+		};
+		E184AA282FFD137E0014F9A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E184AA232FFD13610014F9A3 /* MobileGluesPrepare */;
+			targetProxy = E184AA272FFD137E0014F9A3 /* PBXContainerItemProxy */;
+		};
+		E184AA352FFD1D350014F9A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E184AA2E2FFD1CB10014F9A3 /* Cleanup */;
+			targetProxy = E184AA342FFD1D350014F9A3 /* PBXContainerItemProxy */;
 		};
 		E1ECC86F2E2DF67800557F34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2997,6 +3081,7 @@
 				PLATFORM = 2;
 				PROVISIONING = "/Users/evaluna/Library/MobileDevice/Provisioning Profiles/WildcardProvisioning.mobileprovision";
 				RELEASE = 0;
+				SDKROOT = iphoneos;
 				SIGNING_TEAMID = TF9842L8S8;
 				TEAMID = 95J8WZ4TN8;
 				VERBOSE = 1;
@@ -3012,6 +3097,7 @@
 				PLATFORM = 2;
 				PROVISIONING = "/Users/evaluna/Library/MobileDevice/Provisioning Profiles/WildcardProvisioning.mobileprovision";
 				RELEASE = 1;
+				SDKROOT = iphoneos;
 				SIGNING_TEAMID = TF9842L8S8;
 				TEAMID = 95J8WZ4TN8;
 				VERBOSE = 0;
@@ -3832,6 +3918,143 @@
 			};
 			name = Release;
 		};
+		E184AA252FFD13610014F9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E184AA262FFD13610014F9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E184AA302FFD1CB10014F9A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E184AA312FFD1CB10014F9A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		E1ECC8752E2DF67800557F34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4055,6 +4278,24 @@
 			buildConfigurations = (
 				E184AA142FFCDCFC0014F9A3 /* Debug */,
 				E184AA152FFCDCFC0014F9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E184AA242FFD13610014F9A3 /* Build configuration list for PBXAggregateTarget "MobileGluesPrepare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E184AA252FFD13610014F9A3 /* Debug */,
+				E184AA262FFD13610014F9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E184AA2F2FFD1CB10014F9A3 /* Build configuration list for PBXLegacyTarget "Cleanup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E184AA302FFD1CB10014F9A3 /* Debug */,
+				E184AA312FFD1CB10014F9A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

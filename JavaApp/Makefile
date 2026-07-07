@@ -11,6 +11,20 @@ TARGETS := $(TARGETS:$(SOURCEDIR)/%=$(OUTPUTDIR)/%.jar)
 # Add all jars to classpath and allow compiling with private API
 JCFLAGS := -cp "$(subst $() $(),:,$(wildcard $(SOURCEDIR)/*/):$(wildcard libs/*/*.jar))" -XDignore.symbol.file
 
+# Distinguish iOS from macOS, and *OS from others
+DETECTPLAT  := $(shell uname -s)
+ifeq ($(DETECTPLAT),Darwin)
+#ifeq ($(shell sw_vers -productName),macOS)
+BOOTJDK     ?= $(shell /usr/libexec/java_home -v 1.8)/bin
+$(warning Building on macOS.)
+else ifeq ($(DETECTPLAT),Linux)
+BOOTJDK     ?= /usr/bin
+endif
+
+ifeq ($(filter 1.8.0,$(shell $(BOOTJDK)/javac -version &> /tmp/javaver.txt && cat /tmp/javaver.txt | cut -b 7-11 && rm -rf /tmp/javaver.txt)),)
+$(error You need to install JDK 8)
+endif
+
 all: $(TARGETS)
 	
 # Sometimes the CI produces empty class file resulting in broken jar, so we check and abort here

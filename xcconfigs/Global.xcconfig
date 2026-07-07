@@ -1,2 +1,17 @@
 DEVELOPMENT_TEAM[config=Debug] = 95J8WZ4TN8
 DEVELOPMENT_TEAM[config=Release] = AAAAA11111
+
+// idk but PATH doesn't work
+MAKE_CMAKE_PATH=/opt/homebrew/bin
+
+// Clean helper
+CLEAN_COMMAND_ = echo
+CLEAN_COMMAND_install = echo
+CLEAN_COMMAND_clean = $(MAKE_CMAKE_PATH)/gmake clean
+CLEAN_COMMAND = $(CLEAN_COMMAND_$(ACTION))
+
+// Redirect make install to regular build
+MAKE_ACTION_ =
+MAKE_ACTION_install =
+MAKE_ACTION_clean = clean
+MAKE_ACTION = $(MAKE_ACTION_$(ACTION))

@@ -56,12 +56,10 @@ OSVER       := $(shell sw_vers -productVersion | cut -b 1-2)
 ifeq ($(shell sw_vers -productName),macOS)
 IOS         := 0
 SDKPATH     ?= $(shell xcrun --sdk iphoneos --show-sdk-path)
-BOOTJDK     ?= $(shell /usr/libexec/java_home -v 1.8)/bin
 $(warning Building on macOS.)
 else
 IOS         := 1
 SDKPATH     ?= /usr/share/SDKs/iPhoneOS.sdk
-BOOTJDK     ?= /usr/lib/jvm/java-8-openjdk/bin
 ifeq ($(shell test "$(OSVER)" -gt 14; echo $$?),0)
 PREFIX      ?= /var/jb/
 else
@@ -72,7 +70,6 @@ endif
 else ifeq ($(DETECTPLAT),Linux)
 IOS         := 0
 # SDKPATH presence is checked later
-BOOTJDK     ?= /usr/bin
 $(warning Building on Linux. Note that all targets may not compile or require external components.)
 else
 $(error This platform is not currently supported for building Angel Aura Amethyst.)
@@ -183,16 +180,6 @@ METHOD_MACHO = \
 # Make sure everything is already available for use. Error if they require something
 ifneq ($(call METHOD_DEPCHECK,cmake --version),1)
 $(error You need to install cmake)
-endif
-
-ifneq ($(call METHOD_DEPCHECK,$(BOOTJDK)/javac -version),1)
-$(error You need to install JDK 8)
-endif
-
-ifeq ($(IOS),0)
-ifeq ($(filter 1.8.0,$(shell $(BOOTJDK)/javac -version &> /tmp/javaver.txt && cat /tmp/javaver.txt | cut -b 7-11 && rm -rf /tmp/javaver.txt)),)
-$(error You need to install JDK 8)
-endif
 endif
 
 ifneq ($(call METHOD_DEPCHECK,ldid),1)
