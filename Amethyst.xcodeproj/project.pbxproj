@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,6 +83,8 @@
 		E11CBCB42E2DE8AF00248B71 /* SurfaceViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE32E27EEF500BA8320 /* SurfaceViewController+Navigation.m */; };
 		E11CBCB52E2DE8AF00248B71 /* TrackedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE42E27EEF500BA8320 /* TrackedTextField.m */; };
 		E11CBCB62E2DE8AF00248B71 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE62E27EEF500BA8320 /* utils.m */; };
+		E184A9F22FFCB2130014F9A3 /* MinecraftOptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */; };
+		E184A9F62FFCB2690014F9A3 /* mach_excServer.c in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F42FFCB2690014F9A3 /* mach_excServer.c */; };
 		E1B8F8062E2E5CA30064B100 /* BaseAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */; };
 		E1B8F8072E2E5CA30064B100 /* MicrosoftAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */; };
 		E1B8F8082E2E5CA30064B100 /* LocalAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */; };
@@ -541,6 +543,9 @@
 		E1753C432E27F06500BA8320 /* fishhook.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = fishhook.podspec; sourceTree = "<group>"; };
 		E1753C442E27F06500BA8320 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E1753C452E27F06500BA8320 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MinecraftOptionUtils.m; path = ../Natives/MinecraftOptionUtils.m; sourceTree = "<group>"; };
+		E184A9F32FFCB2690014F9A3 /* mach_excServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_excServer.h; sourceTree = "<group>"; };
+		E184A9F42FFCB2690014F9A3 /* mach_excServer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mach_excServer.c; sourceTree = "<group>"; };
 		E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseAuthenticator.m; path = Natives/authenticator/BaseAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalAuthenticator.m; path = Natives/authenticator/LocalAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MicrosoftAuthenticator.m; path = Natives/authenticator/MicrosoftAuthenticator.m; sourceTree = SOURCE_ROOT; };
@@ -691,6 +696,10 @@
 		E1ECCA092E2DF9B300557F34 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E184A9D92FFCAFA70014F9A3 /* xcconfigs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = xcconfigs; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		78CD7DD32E36EE68003814B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -731,6 +740,7 @@
 		054957C02986E8DC00EFD4CE = {
 			isa = PBXGroup;
 			children = (
+				E184A9D92FFCAFA70014F9A3 /* xcconfigs */,
 				054957CE2986E91000EFD4CE /* .github */,
 				054957CF2986E91000EFD4CE /* .gitignore */,
 				054957CC2986E91000EFD4CE /* .gitmodules */,
@@ -1033,6 +1043,7 @@
 				E1753BD12E27EEF500BA8320 /* LauncherProfileEditorViewController.m */,
 				E1753BD22E27EEF500BA8320 /* LauncherProfilesViewController.m */,
 				E1753BD32E27EEF500BA8320 /* LauncherSplitViewController.m */,
+				E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */,
 				E1753BD62E27EEF500BA8320 /* MinecraftResourceDownloadTask.m */,
 				E1753BD72E27EEF500BA8320 /* MinecraftResourceUtils.m */,
 				E1753BD82E27EEF500BA8320 /* PickTextField.m */,
@@ -1102,6 +1113,16 @@
 			);
 			name = fishhook;
 			path = Natives/external/fishhook;
+			sourceTree = SOURCE_ROOT;
+		};
+		E184A9F52FFCB2690014F9A3 /* mach */ = {
+			isa = PBXGroup;
+			children = (
+				E184A9F32FFCB2690014F9A3 /* mach_excServer.h */,
+				E184A9F42FFCB2690014F9A3 /* mach_excServer.c */,
+			);
+			name = mach;
+			path = Natives/external/mach;
 			sourceTree = SOURCE_ROOT;
 		};
 		E1B8F8002E2E5BFB0064B100 /* AmethystAccountJNI */ = {
@@ -1301,6 +1322,7 @@
 		E1ECC7842E2DF29D00557F34 /* external */ = {
 			isa = PBXGroup;
 			children = (
+				E184A9F52FFCB2690014F9A3 /* mach */,
 				E1ECC7FF2E2DF5DE00557F34 /* UnzipKit */,
 				E11CBB522E2DB91900248B71 /* ballpa1n */,
 				E11CBB2E2E2DB8D400248B71 /* DBNumberedSlider */,
@@ -2044,6 +2066,9 @@
 				78CD7DDB2E36EE68003814B5 /* PBXTargetDependency */,
 				78CD7DEB2E36EE84003814B5 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				E184A9D92FFCAFA70014F9A3 /* xcconfigs */,
+			);
 			name = AngelAuraAmethyst;
 			packageProductDependencies = (
 			);
@@ -2310,6 +2335,7 @@
 				E11CBC652E2DE8AF00248B71 /* ControlJoystick.m in Sources */,
 				E11CBC672E2DE8AF00248B71 /* ControlLayout.m in Sources */,
 				E11CBC692E2DE8AF00248B71 /* ControlSubButton.m in Sources */,
+				E184A9F62FFCB2690014F9A3 /* mach_excServer.c in Sources */,
 				E11CBC6B2E2DE8AF00248B71 /* CustomControlsUtils.m in Sources */,
 				E11CBC6D2E2DE8AF00248B71 /* NSPredicateUtilitiesExternal.m in Sources */,
 				E11CBC362E2DE8AF00248B71 /* HostManagerBridge.m in Sources */,
@@ -2363,6 +2389,7 @@
 				E11CBCA42E2DE8AF00248B71 /* LauncherProfileEditorViewController.m in Sources */,
 				E11CBCA52E2DE8AF00248B71 /* LauncherProfilesViewController.m in Sources */,
 				E11CBCA62E2DE8AF00248B71 /* LauncherSplitViewController.m in Sources */,
+				E184A9F22FFCB2130014F9A3 /* MinecraftOptionUtils.m in Sources */,
 				E11CBCA72E2DE8AF00248B71 /* MinecraftResourceDownloadTask.m in Sources */,
 				E11CBCA82E2DE8AF00248B71 /* MinecraftResourceUtils.m in Sources */,
 				E11CBCA92E2DE8AF00248B71 /* PickTextField.m in Sources */,
@@ -2878,6 +2905,8 @@
 /* Begin XCBuildConfiguration section */
 		054957C62986E8DC00EFD4CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
+			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
@@ -2891,6 +2920,8 @@
 		};
 		054957C72986E8DC00EFD4CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
+			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
@@ -2960,7 +2991,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3058,7 +3088,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3149,7 +3178,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3246,7 +3274,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3337,7 +3364,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -3367,6 +3393,7 @@
 					"$(PROJECT_DIR)/Natives/external/DBNumberedSlider",
 					"$(PROJECT_DIR)/Natives/external/fishhook",
 					"$(PROJECT_DIR)/Natives/external/lzma",
+					"$(PROJECT_DIR)/Natives/external/mach",
 					"$(PROJECT_DIR)/Natives/external/mesa",
 					"$(PROJECT_DIR)/Natives/external/NRFileManager",
 					"$(PROJECT_DIR)/Natives/external/UnzipKit/Lib/MiniZip",
@@ -3440,7 +3467,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -3464,6 +3490,7 @@
 					"$(PROJECT_DIR)/Natives/external/DBNumberedSlider",
 					"$(PROJECT_DIR)/Natives/external/fishhook",
 					"$(PROJECT_DIR)/Natives/external/lzma",
+					"$(PROJECT_DIR)/Natives/external/mach",
 					"$(PROJECT_DIR)/Natives/external/mesa",
 					"$(PROJECT_DIR)/Natives/external/NRFileManager",
 					"$(PROJECT_DIR)/Natives/external/UnzipKit/Lib/MiniZip",
@@ -3536,7 +3563,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3625,7 +3651,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 95J8WZ4TN8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
