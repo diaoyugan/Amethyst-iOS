@@ -2143,6 +2143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E11CBC202E2DE84D00248B71 /* Build configuration list for PBXNativeTarget "AngelAuraAmethyst" */;
 			buildPhases = (
+				E184AA3D2FFD31F00014F9A3 /* Generate config.h */,
 				E11CBC052E2DE84C00248B71 /* Sources */,
 				E11CBC062E2DE84C00248B71 /* Frameworks */,
 				E1ECC8712E2DF67800557F34 /* Embed Frameworks */,
@@ -2449,6 +2450,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$MAKE_CMAKE_PATH/cmake \\\n        -S Natives/external/MobileGlues/src/main/cpp \\\n        -B Natives/build/mobileglues \\\n        -DMACOS=\"1\" \\\n        -DCMAKE_CROSSCOMPILING=true \\\n        -DCMAKE_SYSTEM_NAME=Darwin \\\n        -DCMAKE_SYSTEM_PROCESSOR=aarch64 \\\n        -DCMAKE_OSX_SYSROOT=\"$SDKROOT\" \\\n        -DCMAKE_OSX_ARCHITECTURES=arm64 \\\n        -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \\\n        -DCMAKE_C_FLAGS=\"-arch arm64\"\n";
+		};
+		E184AA3D2FFD31F00014F9A3 /* Generate config.h */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Natives/config.h.in",
+			);
+			name = "Generate config.h";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Natives/config.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIG_BRANCH=\"$(git branch --show-current)\"\nCONFIG_COMMIT=\"$(git rev-parse --short HEAD)\"\nCONFIG_RELEASE=$([[ \"${CONFIGURATION}\" == \"Release\" ]] && echo 1 || echo 0)\nHEADER_PATH=\"${SRCROOT}/Natives/config.h\"\n\n# Use cmake format for now\nsed -e \"s/#cmakedefine CONFIG_RELEASE 1/#define CONFIG_RELEASE ${CONFIG_RELEASE}/g\" \\\n    -e \"s/#cmakedefine CONFIG_BRANCH \\\"@CONFIG_BRANCH@\\\"/#define CONFIG_BRANCH \\\"${CONFIG_BRANCH}\\\"/g\" \\\n    -e \"s/#cmakedefine CONFIG_COMMIT \\\"@CONFIG_COMMIT@\\\"/#define CONFIG_COMMIT \\\"${CONFIG_COMMIT}\\\"/g\" \\\n    -e \"s/#cmakedefine /\\/\\/ #define /g\" \\\n    ${HEADER_PATH}.in > ${HEADER_PATH}\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
