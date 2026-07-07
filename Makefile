@@ -148,10 +148,10 @@ METHOD_PACKAGE = \
 		IPA_SUFFIX=".ipa"; \
 	fi; \
 	if [ '$(SLIMMED_ONLY)' = '0' ]; then \
-		zip --symlinks -r $(OUTPUTDIR)/org.angelauramc.amethyst-$(VERSION)-$(PLATFORM_NAME)$$IPA_SUFFIX Payload; \
+		zip -r $(OUTPUTDIR)/org.angelauramc.amethyst-$(VERSION)-$(PLATFORM_NAME)$$IPA_SUFFIX Payload; \
 	fi; \
 	if [ '$(SLIMMED)' = '1' ] || [ '$(SLIMMED_ONLY)' = '1' ]; then \
-		zip --symlinks -r $(OUTPUTDIR)/org.angelauramc.amethyst.slimmed-$(VERSION)-$(PLATFORM_NAME)$$IPA_SUFFIX Payload --exclude='Payload/AngelAuraAmethyst.app/java_runtimes/*'; \
+		zip -r $(OUTPUTDIR)/org.angelauramc.amethyst.slimmed-$(VERSION)-$(PLATFORM_NAME)$$IPA_SUFFIX Payload --exclude='Payload/AngelAuraAmethyst.app/java_runtimes/*'; \
 	fi
 
 # Function to download and unpack Java runtimes.
@@ -190,7 +190,7 @@ $(error You need to install JDK 8)
 endif
 
 ifeq ($(IOS),0)
-ifeq ($(filter 1.8.0,$(shell $(BOOTJDK)/javac -version &> javaver.txt && cat javaver.txt | cut -b 7-11 && rm -rf javaver.txt)),)
+ifeq ($(filter 1.8.0,$(shell $(BOOTJDK)/javac -version &> /tmp/javaver.txt && cat /tmp/javaver.txt | cut -b 7-11 && rm -rf /tmp/javaver.txt)),)
 $(error You need to install JDK 8)
 endif
 endif
@@ -237,7 +237,6 @@ help:
 	echo '    make                                Makes everything under all'
 	echo '    make help                           Displays this message'
 	echo '    make all                            Builds the entire app'
-	echo '    make native                         Builds the native app'
 	echo '    make java                           Builds the Java app'
 	echo '    make jre                            Downloads/unpacks the iOS JREs'
 	echo '    make assets                         Compiles Assets.xcassets'
@@ -255,34 +254,12 @@ check:
 		$(info $(shell printf "%-20s" "$(v)") = $(value $(v)))) \
 	)
 
-native: dep_mg
-	echo '[Amethyst v$(VERSION)] native - start'
-	mkdir -p $(WORKINGDIR)
-	cd $(WORKINGDIR) && cmake \
-		-DCMAKE_BUILD_TYPE=$(CMAKE_BUILD_TYPE) \
-		-DCMAKE_CROSSCOMPILING=true \
-		-DCMAKE_SYSTEM_NAME=Darwin \
-		-DCMAKE_SYSTEM_PROCESSOR=aarch64 \
-		-DCMAKE_OSX_SYSROOT="$(SDKPATH)" \
-		-DCMAKE_OSX_ARCHITECTURES=arm64 \
-		-DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
-		-DCMAKE_C_FLAGS="-arch arm64" \
-		-DCONFIG_BRANCH="$(BRANCH)" \
-		-DCONFIG_COMMIT="$(COMMIT)" \
-		-DCONFIG_RELEASE=$(RELEASE) \
-		..
-
-	cmake --build $(WORKINGDIR) --config $(CMAKE_BUILD_TYPE) -j$(JOBS)
-	#	--target awt_headless awt_xawt libOSMesaOverride.dylib tinygl4angle AngelAuraAmethyst
-	rm $(WORKINGDIR)/libawt_headless.dylib
-	echo '[Amethyst v$(VERSION)] native - end'
-
 java:
 	echo '[Amethyst v$(VERSION)] java - start'
 	$(MAKE) -C JavaApp -j$(JOBS) BOOTJDK=$(BOOTJDK)
 	echo '[Amethyst v$(VERSION)] java - end'
 
-jre: native
+jre:
 	echo '[Amethyst v$(VERSION)] jre - start'
 	mkdir -p $(SOURCEDIR)/depends
 	cd $(SOURCEDIR)/depends; \
@@ -295,10 +272,7 @@ jre: native
 	$(call METHOD_DIRCHECK,$(OUTPUTDIR)/java_runtimes); \
 	cp -R $(POJAV_JRE8_DIR) $(OUTPUTDIR)/java_runtimes; \
 	cp -R $(POJAV_JRE17_DIR) $(OUTPUTDIR)/java_runtimes; \
-	cp -R $(POJAV_JRE21_DIR) $(OUTPUTDIR)/java_runtimes; \
-	cp $(WORKINGDIR)/libawt_xawt.dylib $(OUTPUTDIR)/java_runtimes/java-8-openjdk/lib; \
-	cp $(WORKINGDIR)/libawt_xawt.dylib $(OUTPUTDIR)/java_runtimes/java-17-openjdk/lib;
-	cp $(WORKINGDIR)/libawt_xawt.dylib $(OUTPUTDIR)/java_runtimes/java-21-openjdk/lib
+	cp -R $(POJAV_JRE21_DIR) $(OUTPUTDIR)/java_runtimes;
 	echo '[Amethyst v$(VERSION)] jre - end'
 
 dep_mg:
@@ -315,7 +289,7 @@ dep_mg:
 		-DCMAKE_C_FLAGS="-arch arm64" \
 		$(SOURCEDIR)/Natives/external/MobileGlues/src/main/cpp/
 
-	cmake --build $(WORKINGDIR)/mobileglues --config RelWithDebInfo -j$(JOBS) --target mobileglues
+	cmake --build $(WORKINGDIR)/mobileglues --config RelWithDebInfo -j$((JOBS / 2) + 1) --target mobileglues
 	cp $(WORKINGDIR)/mobileglues/libmobileglues.dylib $(WORKINGDIR)/libmobileglues.dylib
 	cp $(SOURCEDIR)/Natives/external/MobileGlues/src/main/cpp/libraries/ios/libspirv-cross-c-shared.0.dylib $(WORKINGDIR)/libspirv-cross-c-shared.0.dylib
 	echo '[Amethyst v$(VERSION)] dep_mg - end'
@@ -335,20 +309,8 @@ assets:
 	fi
 	echo '[Amethyst v$(VERSION)] assets - end'
 
-payload: native dep_mg java jre assets
+payload: # native dep_mg java jre assets
 	echo '[Amethyst v$(VERSION)] payload - start'
-	$(call METHOD_DIRCHECK,$(WORKINGDIR)/AngelAuraAmethyst.app/libs)
-	$(call METHOD_DIRCHECK,$(WORKINGDIR)/AngelAuraAmethyst.app/libs_caciocavallo)
-	$(call METHOD_DIRCHECK,$(WORKINGDIR)/AngelAuraAmethyst.app/libs_caciocavallo17)
-	cp -R $(SOURCEDIR)/Natives/resources/en.lproj/LaunchScreen.storyboardc $(WORKINGDIR)/AngelAuraAmethyst.app/Base.lproj/ || exit 1
-	cp -R $(SOURCEDIR)/Natives/resources/* $(WORKINGDIR)/AngelAuraAmethyst.app/ || exit 1
-	cp $(WORKINGDIR)/*.dylib $(WORKINGDIR)/AngelAuraAmethyst.app/Frameworks/ || exit 1
-	cp -R $(SOURCEDIR)/JavaApp/libs/others/* $(WORKINGDIR)/AngelAuraAmethyst.app/libs/ || exit 1
-	cp $(SOURCEDIR)/JavaApp/build/*.jar $(WORKINGDIR)/AngelAuraAmethyst.app/libs/ || exit 1
-	cp -R $(SOURCEDIR)/JavaApp/libs/caciocavallo/* $(WORKINGDIR)/AngelAuraAmethyst.app/libs_caciocavallo || exit 1
-	cp -R $(SOURCEDIR)/JavaApp/libs/caciocavallo17/* $(WORKINGDIR)/AngelAuraAmethyst.app/libs_caciocavallo17 || exit 1
-	$(call METHOD_DIRCHECK,$(OUTPUTDIR)/Payload)
-	cp -R $(WORKINGDIR)/AngelAuraAmethyst.app $(OUTPUTDIR)/Payload
 	if [ '$(SLIMMED_ONLY)' != '1' ]; then \
 		cp -R $(OUTPUTDIR)/java_runtimes $(OUTPUTDIR)/Payload/AngelAuraAmethyst.app; \
 	fi
@@ -405,7 +367,7 @@ package: payload
 	fi
 	cd $(OUTPUTDIR); \
 	$(call METHOD_PACKAGE); \
-	zip --symlinks -r $(OUTPUTDIR)/java_runtimes.zip java_runtimes; \
+	echo zip --symlinks -r $(OUTPUTDIR)/java_runtimes.zip java_runtimes; \
 	echo '[Amethyst v$(VERSION)] package - end'
 	
 dsym: payload

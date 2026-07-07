@@ -85,15 +85,21 @@ jobs:
           export SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
-            gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=${{ matrix.platform }}
-            gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=${{ matrix.platform }} TROLLSTORE_JIT_ENT=1
-          elif [ "${{ matrix.platform_name }}" == "tvos" ]; then
-            # Build tipa only for tvOS
-            gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=${{ matrix.platform }} TROLLSTORE_JIT_ENT=1
+            xcodebuild archive -archivePath artifacts/${{ matrix.platform_name }} -scheme AngelAuraAmethyst -config Release AD_HOC_CODE_SIGNING_ALLOWED=1 CODE_SIGN_IDENTITY=
           else
             # Build ipa only for everything else
-            gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=${{ matrix.platform }}
+            echo "Not supported for now"
+            exit 1
           fi
+          
+      - name: Package artifacts
+        run: |
+          cd artifacts
+          rm -rf Payload
+          ln -s ${{ matrix.platform_name }}.xcarchive/Products/Applications Payload
+          cd ..
+          gmake package
+          gmake package TROLLSTORE_JIT_ENT=1
 
       - name: Upload regular ipa
         uses: actions/upload-artifact@main
@@ -119,9 +125,9 @@ jobs:
           name: org.angelauramc.amethyst.slimmed-${{ matrix.platform_name }}-trollstore.tipa
           path: artifacts/org.angelauramc.amethyst.slimmed-*-${{ matrix.platform_name }}-trollstore.tipa
 
-      - name: Upload PojavLauncher.dSYM
+      - name: Upload dSYM
         uses: actions/upload-artifact@main
         if: matrix.platform_name == 'ios'
         with:
           name: AngelAuraAmethyst.dSYM
-          path: artifacts/AngelAuraAmethyst.dSYM
+          path: artifacts/${{ matrix.platform_name }}.xcarchive/dSYMs/AngelAuraAmethyst.app.dSYM

@@ -194,7 +194,7 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     } else if ([javaHome hasPrefix:@(getenv("POJAV_HOME"))]) {
         // Copy libawt_xawt.dylib
         NSString *dest = [NSString stringWithFormat:@"%@/lib/libawt_xawt.dylib", javaHome];
-        NSString *source = [NSString stringWithFormat:@"%@/Frameworks/libawt_xawt.dylib", NSBundle.mainBundle.bundlePath];
+        NSString *source = [NSString stringWithFormat:@"%@/Frameworks/awt_xawt.framework/awt_xawt", NSBundle.mainBundle.bundlePath];
         NSError *error;
         [fm removeItemAtPath:dest error:nil];
         [fm copyItemAtPath:source toPath:dest error:&error];
