@@ -1,6 +1,8 @@
 DEVELOPMENT_TEAM[config=Debug] = 95J8WZ4TN8
 DEVELOPMENT_TEAM[config=Release] = AAAAA11111
 
+__DIAGNOSE_INVALID_DEPLOYMENT_TARGET_AS_ERROR = NO
+
 // idk but PATH doesn't work
 MAKE_CMAKE_PATH=/opt/homebrew/bin
 
