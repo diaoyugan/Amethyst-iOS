@@ -85,7 +85,7 @@ jobs:
           export SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
-            xcodebuild archive -archivePath artifacts/${{ matrix.platform_name }} -scheme AngelAuraAmethyst -config Release AD_HOC_CODE_SIGNING_ALLOWED=1 CODE_SIGN_IDENTITY=
+            xcodebuild archive -archivePath artifacts/${{ matrix.platform_name }} -scheme AngelAuraAmethyst -config Debug AD_HOC_CODE_SIGNING_ALLOWED=1 CODE_SIGN_IDENTITY=
           else
             # Build ipa only for everything else
             echo "Not supported for now"
@@ -98,8 +98,8 @@ jobs:
           rm -rf Payload
           ln -s ${{ matrix.platform_name }}.xcarchive/Products/Applications Payload
           cd ..
-          gmake package
-          gmake package TROLLSTORE_JIT_ENT=1
+          gmake package SLIMMED=1
+          gmake package SLIMMED=1 TROLLSTORE_JIT_ENT=1
 
       - name: Upload regular ipa
         uses: actions/upload-artifact@main

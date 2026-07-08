@@ -9,7 +9,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setupOptionsAtGameDir:(NSString *)gameDir;
 + (instancetype)sharedInstance;
 
-- (void)loadFromPath:(NSString *)optionsPath;
 - (void)setKey:(NSString *)key value:(NSString *)value;
 - (void)setDefaultForKey:(NSString *)key value:(NSString *)value;
 - (nullable NSString *)getValueForKey:(NSString *)key;

@@ -25,7 +25,6 @@
 /* Begin PBXBuildFile section */
 		78CD7DDC2E36EE68003814B5 /* AmethystAccountJNI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */; };
 		78CD7DDD2E36EE68003814B5 /* AmethystAccountJNI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78CD7DEC2E36EE84003814B5 /* awt_xawt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DE62E36EE84003814B5 /* awt_xawt.framework */; };
 		78CD7DED2E36EE84003814B5 /* awt_xawt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78CD7DE62E36EE84003814B5 /* awt_xawt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78CD7DF62E36EE91003814B5 /* MinecraftAccountJNI.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8092E2E5D2F0064B100 /* MinecraftAccountJNI.m */; };
 		78CD7DF72E36EEC2003814B5 /* empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8162E2E5EAE0064B100 /* empty.m */; };
@@ -102,6 +101,10 @@
 		E184A9F22FFCB2130014F9A3 /* MinecraftOptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */; };
 		E184A9F62FFCB2690014F9A3 /* mach_excServer.c in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F42FFCB2690014F9A3 /* mach_excServer.c */; };
 		E184AA372FFD1FB30014F9A3 /* libmobileglues.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E199D5B22FFE3132008C047F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E199D5B12FFE3132008C047F /* Assets.xcassets */; };
+		E199D5B52FFE317E008C047F /* UniversalJIT26.js in Resources */ = {isa = PBXBuildFile; fileRef = E199D5B32FFE317E008C047F /* UniversalJIT26.js */; };
+		E199D5B62FFE317E008C047F /* UniversalJIT26Extension.js in Resources */ = {isa = PBXBuildFile; fileRef = E199D5B42FFE317E008C047F /* UniversalJIT26Extension.js */; };
+		E199D5BC2FFE41CE008C047F /* libawt_headless.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E199D5BB2FFE41CE008C047F /* libawt_headless.tbd */; };
 		E1B8F8062E2E5CA30064B100 /* BaseAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */; };
 		E1B8F8072E2E5CA30064B100 /* MicrosoftAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */; };
 		E1B8F8082E2E5CA30064B100 /* LocalAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */; };
@@ -593,6 +596,10 @@
 		E184A9F32FFCB2690014F9A3 /* mach_excServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_excServer.h; sourceTree = "<group>"; };
 		E184A9F42FFCB2690014F9A3 /* mach_excServer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mach_excServer.c; sourceTree = "<group>"; };
 		E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmobileglues.dylib; path = ../../../Natives/build/mobileglues/libmobileglues.dylib; sourceTree = "<group>"; };
+		E199D5B12FFE3132008C047F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Natives/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		E199D5B32FFE317E008C047F /* UniversalJIT26.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = UniversalJIT26.js; path = Natives/resources/UniversalJIT26.js; sourceTree = SOURCE_ROOT; };
+		E199D5B42FFE317E008C047F /* UniversalJIT26Extension.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = UniversalJIT26Extension.js; path = Natives/resources/UniversalJIT26Extension.js; sourceTree = SOURCE_ROOT; };
+		E199D5BB2FFE41CE008C047F /* libawt_headless.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = libawt_headless.tbd; sourceTree = "<group>"; };
 		E1B8F8032E2E5CA30064B100 /* BaseAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseAuthenticator.m; path = Natives/authenticator/BaseAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8042E2E5CA30064B100 /* LocalAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalAuthenticator.m; path = Natives/authenticator/LocalAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		E1B8F8052E2E5CA30064B100 /* MicrosoftAuthenticator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MicrosoftAuthenticator.m; path = Natives/authenticator/MicrosoftAuthenticator.m; sourceTree = SOURCE_ROOT; };
@@ -769,6 +776,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E199D5BC2FFE41CE008C047F /* libawt_headless.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +787,6 @@
 				E1ECC8BF2E2DF76100557F34 /* liblzma.tbd in Frameworks */,
 				78CD7DDC2E36EE68003814B5 /* AmethystAccountJNI.framework in Frameworks */,
 				E1ECC8BD2E2DF75A00557F34 /* IOKit.framework in Frameworks */,
-				78CD7DEC2E36EE84003814B5 /* awt_xawt.framework in Frameworks */,
 				E1ECC8702E2DF67800557F34 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1385,6 +1392,7 @@
 				E11CBB522E2DB91900248B71 /* ballpa1n */,
 				E11CBB2E2E2DB8D400248B71 /* DBNumberedSlider */,
 				E11CBB472E2DB90A00248B71 /* NRFileManager */,
+				E199D5BB2FFE41CE008C047F /* libawt_headless.tbd */,
 			);
 			path = external;
 			sourceTree = "<group>";
@@ -1517,6 +1525,9 @@
 		E1ECC9662E2DF96000557F34 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E199D5B32FFE317E008C047F /* UniversalJIT26.js */,
+				E199D5B42FFE317E008C047F /* UniversalJIT26Extension.js */,
+				E199D5B12FFE3132008C047F /* Assets.xcassets */,
 				E1ECC96A2E2DF9B300557F34 /* AppIcon-Light60x60@2x.png */,
 				E1ECC96B2E2DF9B300557F34 /* AppIcon-Light76x76@2x~ipad.png */,
 				E1ECC9AC2E2DF9B300557F34 /* glfw_keycodes.plist */,
@@ -2342,10 +2353,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1ECCA222E2DF9B300557F34 /* AppIcon-Light60x60@2x.png in Resources */,
+				E1ECCA2B2E2DF9B300557F34 /* AppIcon-Light76x76@2x~ipad.png in Resources */,
+				E199D5B22FFE3132008C047F /* Assets.xcassets in Resources */,
+				E1ECCA3A2E2DF9B300557F34 /* glfw_keycodes.plist in Resources */,
+				E1ECCA1F2E2DF9B300557F34 /* log4j-rce-patch-1.7.xml in Resources */,
+				E1ECCA1C2E2DF9B300557F34 /* log4j-rce-patch-1.12.xml in Resources */,
+				E199D5B52FFE317E008C047F /* UniversalJIT26.js in Resources */,
+				E199D5B62FFE317E008C047F /* UniversalJIT26Extension.js in Resources */,
+				E1ECCA1E2E2DF9B300557F34 /* InfoPlist.strings in Resources */,
+				E1ECCA0F2E2DF9B300557F34 /* Localizable.strings in Resources */,
+				E1ECCA1B2E2DF9B300557F34 /* LaunchScreen.storyboardc in Resources */,
 				E1ECCA0C2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA0D2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA0E2E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA0F2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA102E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA112E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA122E2DF9B300557F34 /* Localizable.strings in Resources */,
@@ -2357,14 +2378,9 @@
 				E1ECCA182E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA192E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA1A2E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA1B2E2DF9B300557F34 /* LaunchScreen.storyboardc in Resources */,
-				E1ECCA1C2E2DF9B300557F34 /* log4j-rce-patch-1.12.xml in Resources */,
 				E1ECCA1D2E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA1E2E2DF9B300557F34 /* InfoPlist.strings in Resources */,
-				E1ECCA1F2E2DF9B300557F34 /* log4j-rce-patch-1.7.xml in Resources */,
 				E1ECCA202E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA212E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA222E2DF9B300557F34 /* AppIcon-Light60x60@2x.png in Resources */,
 				E1ECCA232E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA242E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA252E2DF9B300557F34 /* Localizable.strings in Resources */,
@@ -2373,7 +2389,6 @@
 				E1ECCA282E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA292E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA2A2E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA2B2E2DF9B300557F34 /* AppIcon-Light76x76@2x~ipad.png in Resources */,
 				E1ECCA2C2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA2D2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA2E2E2DF9B300557F34 /* Localizable.strings in Resources */,
@@ -2388,7 +2403,6 @@
 				E1ECCA372E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA382E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA392E2DF9B300557F34 /* Localizable.strings in Resources */,
-				E1ECCA3A2E2DF9B300557F34 /* glfw_keycodes.plist in Resources */,
 				E1ECCA3B2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA3C2E2DF9B300557F34 /* Localizable.strings in Resources */,
 				E1ECCA3D2E2DF9B300557F34 /* Localizable.strings in Resources */,
@@ -2450,6 +2464,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$MAKE_CMAKE_PATH/cmake \\\n        -S Natives/external/MobileGlues/src/main/cpp \\\n        -B Natives/build/mobileglues \\\n        -DMACOS=\"1\" \\\n        -DCMAKE_CROSSCOMPILING=true \\\n        -DCMAKE_SYSTEM_NAME=Darwin \\\n        -DCMAKE_SYSTEM_PROCESSOR=aarch64 \\\n        -DCMAKE_OSX_SYSROOT=\"$SDKROOT\" \\\n        -DCMAKE_OSX_ARCHITECTURES=arm64 \\\n        -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \\\n        -DCMAKE_C_FLAGS=\"-arch arm64\"\n";
+			showEnvVarsInLog = 0;
 		};
 		E184AA3D2FFD31F00014F9A3 /* Generate config.h */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2469,7 +2484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CONFIG_BRANCH=\"$(git branch --show-current)\"\nCONFIG_COMMIT=\"$(git rev-parse --short HEAD)\"\nCONFIG_RELEASE=$([[ \"${CONFIGURATION}\" == \"Release\" ]] && echo 1 || echo 0)\nHEADER_PATH=\"${SRCROOT}/Natives/config.h\"\n\n# Use cmake format for now\nsed -e \"s/#cmakedefine CONFIG_RELEASE 1/#define CONFIG_RELEASE ${CONFIG_RELEASE}/g\" \\\n    -e \"s/#cmakedefine CONFIG_BRANCH \\\"@CONFIG_BRANCH@\\\"/#define CONFIG_BRANCH \\\"${CONFIG_BRANCH}\\\"/g\" \\\n    -e \"s/#cmakedefine CONFIG_COMMIT \\\"@CONFIG_COMMIT@\\\"/#define CONFIG_COMMIT \\\"${CONFIG_COMMIT}\\\"/g\" \\\n    -e \"s/#cmakedefine /\\/\\/ #define /g\" \\\n    ${HEADER_PATH}.in > ${HEADER_PATH}\n";
+			shellScript = "CONFIG_BRANCH=\"$(git branch --show-current)\"\nCONFIG_COMMIT=\"$(git rev-parse --short HEAD)\"\nCONFIG_RELEASE=$([[ \"${CONFIGURATION}\" == \"Release\" ]] && echo 1 || echo 0)\nHEADER_PATH=\"${SRCROOT}/Natives/config.h\"\n\n# Use cmake format for now\nNEW_CONTENTS=\"$(sed -e \"s/#cmakedefine CONFIG_RELEASE 1/#define CONFIG_RELEASE ${CONFIG_RELEASE}/g\" \\\n    -e \"s/#cmakedefine CONFIG_BRANCH \\\"@CONFIG_BRANCH@\\\"/#define CONFIG_BRANCH \\\"${CONFIG_BRANCH}\\\"/g\" \\\n    -e \"s/#cmakedefine CONFIG_COMMIT \\\"@CONFIG_COMMIT@\\\"/#define CONFIG_COMMIT \\\"${CONFIG_COMMIT}\\\"/g\" \\\n    -e \"s/#cmakedefine /\\/\\/ #define /g\" \\\n    \"${HEADER_PATH}.in\")\"\n\nif [[ \"${NEW_CONTENTS}\" != \"$(cat \"${HEADER_PATH}\" 2>/dev/null)\" ]]; then\n    printf '%s\\n' \"${NEW_CONTENTS}\" > \"${HEADER_PATH}\"\n    echo \"config.h updated\"\nelse\n    echo \"config.h unchanged\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3099,12 +3114,14 @@
 			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
 			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
 				PROVISIONING = "/Users/evaluna/Library/MobileDevice/Provisioning Profiles/WildcardProvisioning.mobileprovision";
 				RELEASE = 0;
 				SDKROOT = iphoneos;
 				SIGNING_TEAMID = TF9842L8S8;
+				STRIP_STYLE = "non-global";
 				TEAMID = 95J8WZ4TN8;
 				VERBOSE = 1;
 			};
@@ -3115,12 +3132,14 @@
 			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
 			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
 				PROVISIONING = "/Users/evaluna/Library/MobileDevice/Provisioning Profiles/WildcardProvisioning.mobileprovision";
 				RELEASE = 1;
 				SDKROOT = iphoneos;
 				SIGNING_TEAMID = TF9842L8S8;
+				STRIP_STYLE = "non-global";
 				TEAMID = 95J8WZ4TN8;
 				VERBOSE = 0;
 			};
@@ -3381,6 +3400,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/awt_xawt",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -3471,6 +3494,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/awt_xawt",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -3502,7 +3529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Light";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3552,6 +3579,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3605,7 +3633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Light";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3649,6 +3677,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

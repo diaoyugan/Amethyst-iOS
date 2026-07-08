@@ -46,7 +46,7 @@ public class MinecraftAccount
     }
 
     static {
-        System.loadLibrary("AmethystAccountJNI");
+        System.load(System.getenv("BUNDLE_PATH") + "/Frameworks/AmethystAccountJNI.framework/AmethystAccountJNI");
     }
     public static native String getAccessTokenFromKeychain(String xuid);
 }
