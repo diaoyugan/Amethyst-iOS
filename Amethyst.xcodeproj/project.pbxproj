@@ -144,6 +144,11 @@
 		E1B8F9BB2E2E70D00064B100 /* lwjgl.jar in Copy jar files */ = {isa = PBXBuildFile; fileRef = E1B8F9B82E2E70D00064B100 /* lwjgl.jar */; };
 		E1B8F9BC2E2E70D00064B100 /* patchjna_agent.jar in Copy jar files */ = {isa = PBXBuildFile; fileRef = E1B8F9B92E2E70D00064B100 /* patchjna_agent.jar */; };
 		E1B8F9BD2E2E70D00064B100 /* launcher.jar in Copy jar files */ = {isa = PBXBuildFile; fileRef = E1B8F9BA2E2E70D00064B100 /* launcher.jar */; };
+		E1E06F1E3000C6C500B16EF6 /* string_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = E16D43DA3000AC7C0018C855 /* string_utils.h */; };
+		E1E06F233000C6C500B16EF6 /* libEGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9722E2E6C6A0064B100 /* libEGL.framework */; };
+		E1E06F243000C6C500B16EF6 /* libGLESv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9762E2E6C6A0064B100 /* libGLESv2.framework */; };
+		E1E06F2C3000C71000B16EF6 /* tinyfd_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E06F2B3000C71000B16EF6 /* tinyfd_bridge.m */; };
+		E1E06F2F3000C72D00B16EF6 /* liblwjgl_tinyfd.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1E06F283000C6C500B16EF6 /* liblwjgl_tinyfd.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E1ECC8372E2DF5DE00557F34 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ECC7982E2DF5DE00557F34 /* unzip.c */; };
 		E1ECC83B2E2DF5DE00557F34 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E1ECC7962E2DF5DE00557F34 /* mztools.c */; };
 		E1ECC8412E2DF5DE00557F34 /* NSURL+UnzipKitExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1ECC7AE2E2DF5DE00557F34 /* NSURL+UnzipKitExtensions.m */; };
@@ -299,6 +304,13 @@
 			remoteGlobalIDString = E184AA2E2FFD1CB10014F9A3;
 			remoteInfo = Cleanup;
 		};
+		E1E06F2D3000C71F00B16EF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054957C12986E8DC00EFD4CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1E06F1C3000C6C500B16EF6;
+			remoteInfo = lwjgl_tinyfd;
+		};
 		E1ECC7882E2DF2A400557F34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E11CBB282E2DB8D400248B71 /* DBNumberedSlider.xcodeproj */;
@@ -370,6 +382,7 @@
 				E1B8F9982E2E6C810064B100 /* liblwjgl_nanovg.dylib in Embed Frameworks */,
 				E1B8F9992E2E6C810064B100 /* liblwjgl_opengl.dylib in Embed Frameworks */,
 				E1B8F99A2E2E6C810064B100 /* liblwjgl_stb.dylib in Embed Frameworks */,
+				E1E06F2F3000C72D00B16EF6 /* liblwjgl_tinyfd.dylib in Embed Frameworks */,
 				E1B8F99C2E2E6C810064B100 /* liblwjgl_vma.dylib in Embed Frameworks */,
 				E184AA372FFD1FB30014F9A3 /* libmobileglues.dylib in Embed Frameworks */,
 				E1B8F99D2E2E6C810064B100 /* libMoltenVK.dylib in Embed Frameworks */,
@@ -658,6 +671,8 @@
 		E1B8F9B82E2E70D00064B100 /* lwjgl.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = lwjgl.jar; path = ../../../JavaApp/build/lwjgl.jar; sourceTree = "<group>"; };
 		E1B8F9B92E2E70D00064B100 /* patchjna_agent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = patchjna_agent.jar; path = ../../../JavaApp/build/patchjna_agent.jar; sourceTree = "<group>"; };
 		E1B8F9BA2E2E70D00064B100 /* launcher.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = launcher.jar; path = ../../../JavaApp/build/launcher.jar; sourceTree = "<group>"; };
+		E1E06F283000C6C500B16EF6 /* liblwjgl_tinyfd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = liblwjgl_tinyfd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1E06F2B3000C71000B16EF6 /* tinyfd_bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = tinyfd_bridge.m; path = Natives/tinyfd_bridge.m; sourceTree = SOURCE_ROOT; };
 		E1ECC7922E2DF5DE00557F34 /* crypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		E1ECC7932E2DF5DE00557F34 /* ioapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
 		E1ECC7942E2DF5DE00557F34 /* ioapi.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -822,6 +837,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1E06F223000C6C500B16EF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1E06F233000C6C500B16EF6 /* libEGL.framework in Frameworks */,
+				E1E06F243000C6C500B16EF6 /* libGLESv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8672E2DF67800557F34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -850,6 +874,7 @@
 				054957D02986E91000EFD4CE /* Natives */,
 				054957D12986E91000EFD4CE /* README.md */,
 				E1B8F8182E2E5EAE0064B100 /* awt_xawt */,
+				E1E06F2A3000C6DE00B16EF6 /* lwjgl_tinyfd */,
 				E1B8F8002E2E5BFB0064B100 /* AmethystAccountJNI */,
 				E1753BB12E27EE1900BA8320 /* AngelAuraAmethyst */,
 				E1ECC8772E2DF6C300557F34 /* AFNetworking */,
@@ -1106,6 +1131,7 @@
 				78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */,
 				78CD7DE62E36EE84003814B5 /* awt_xawt.framework */,
 				E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */,
+				E1E06F283000C6C500B16EF6 /* liblwjgl_tinyfd.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1384,6 +1410,14 @@
 				E1B8F9B92E2E70D00064B100 /* patchjna_agent.jar */,
 			);
 			path = libs;
+			sourceTree = "<group>";
+		};
+		E1E06F2A3000C6DE00B16EF6 /* lwjgl_tinyfd */ = {
+			isa = PBXGroup;
+			children = (
+				E1E06F2B3000C71000B16EF6 /* tinyfd_bridge.m */,
+			);
+			path = lwjgl_tinyfd;
 			sourceTree = "<group>";
 		};
 		E1ECC7832E2DF27100557F34 /* include */ = {
@@ -2084,6 +2118,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1E06F1D3000C6C500B16EF6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1E06F1E3000C6C500B16EF6 /* string_utils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8652E2DF67800557F34 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2225,6 +2267,7 @@
 				E1ECC86F2E2DF67800557F34 /* PBXTargetDependency */,
 				78CD7DDB2E36EE68003814B5 /* PBXTargetDependency */,
 				78CD7DEB2E36EE84003814B5 /* PBXTargetDependency */,
+				E1E06F2E3000C71F00B16EF6 /* PBXTargetDependency */,
 				E16D43E53000ADFB0018C855 /* PBXTargetDependency */,
 				E184AA112FFCDCA90014F9A3 /* PBXTargetDependency */,
 				E184AA1D2FFCDD7A0014F9A3 /* PBXTargetDependency */,
@@ -2257,6 +2300,25 @@
 			);
 			productName = tinygl4angle;
 			productReference = E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		E1E06F1C3000C6C500B16EF6 /* lwjgl_tinyfd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1E06F253000C6C500B16EF6 /* Build configuration list for PBXNativeTarget "lwjgl_tinyfd" */;
+			buildPhases = (
+				E1E06F1D3000C6C500B16EF6 /* Headers */,
+				E1E06F1F3000C6C500B16EF6 /* Sources */,
+				E1E06F223000C6C500B16EF6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lwjgl_tinyfd;
+			packageProductDependencies = (
+			);
+			productName = tinygl4angle;
+			productReference = E1E06F283000C6C500B16EF6 /* liblwjgl_tinyfd.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		E1ECC8692E2DF67800557F34 /* AFNetworking */ = {
@@ -2393,6 +2455,7 @@
 				78CD7DD52E36EE68003814B5 /* AmethystAccountJNI */,
 				78CD7DE52E36EE84003814B5 /* awt_xawt */,
 				E1ECC8692E2DF67800557F34 /* AFNetworking */,
+				E1E06F1C3000C6C500B16EF6 /* lwjgl_tinyfd */,
 				E16D43D43000AAAE0018C855 /* tinygl4angle */,
 				E184AA232FFD13610014F9A3 /* MobileGluesPrepare */,
 				E184AA0C2FFCDBA10014F9A3 /* MobileGlues */,
@@ -2682,6 +2745,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1E06F1F3000C6C500B16EF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1E06F2C3000C71000B16EF6 /* tinyfd_bridge.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8662E2DF67800557F34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2741,6 +2812,11 @@
 			isa = PBXTargetDependency;
 			target = E184AA2E2FFD1CB10014F9A3 /* Cleanup */;
 			targetProxy = E184AA342FFD1D350014F9A3 /* PBXContainerItemProxy */;
+		};
+		E1E06F2E3000C71F00B16EF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1E06F1C3000C6C500B16EF6 /* lwjgl_tinyfd */;
+			targetProxy = E1E06F2D3000C71F00B16EF6 /* PBXContainerItemProxy */;
 		};
 		E1ECC86F2E2DF67800557F34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4343,6 +4419,147 @@
 			};
 			name = Release;
 		};
+		E1E06F263000C6C500B16EF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Natives/resources/Frameworks";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Natives/external/mesa\"";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E1E06F273000C6C500B16EF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Natives/resources/Frameworks";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Natives/external/mesa\"";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E1ECC8752E2DF67800557F34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4593,6 +4810,15 @@
 			buildConfigurations = (
 				E184AA302FFD1CB10014F9A3 /* Debug */,
 				E184AA312FFD1CB10014F9A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1E06F253000C6C500B16EF6 /* Build configuration list for PBXNativeTarget "lwjgl_tinyfd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1E06F263000C6C500B16EF6 /* Debug */,
+				E1E06F273000C6C500B16EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
