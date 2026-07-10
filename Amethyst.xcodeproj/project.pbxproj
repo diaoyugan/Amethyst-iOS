@@ -98,6 +98,13 @@
 		E11CBCB42E2DE8AF00248B71 /* SurfaceViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE32E27EEF500BA8320 /* SurfaceViewController+Navigation.m */; };
 		E11CBCB52E2DE8AF00248B71 /* TrackedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE42E27EEF500BA8320 /* TrackedTextField.m */; };
 		E11CBCB62E2DE8AF00248B71 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E1753BE62E27EEF500BA8320 /* utils.m */; };
+		E16D43DE3000AC7C0018C855 /* string_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = E16D43DA3000AC7C0018C855 /* string_utils.h */; };
+		E16D43DF3000AC7C0018C855 /* tinygl4angle.c in Sources */ = {isa = PBXBuildFile; fileRef = E16D43DC3000AC7C0018C855 /* tinygl4angle.c */; };
+		E16D43E03000AC7C0018C855 /* string_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = E16D43DB3000AC7C0018C855 /* string_utils.c */; };
+		E16D43E13000AD5B0018C855 /* libEGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9722E2E6C6A0064B100 /* libEGL.framework */; };
+		E16D43E23000AD5D0018C855 /* libGLESv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8F9762E2E6C6A0064B100 /* libGLESv2.framework */; };
+		E16D44423000AEEA0018C855 /* libtinygl4angle.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E16D44443000B1030018C855 /* libspirv-cross-c-shared.0.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E16D44433000B1030018C855 /* libspirv-cross-c-shared.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E184A9F22FFCB2130014F9A3 /* MinecraftOptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F12FFCB2120014F9A3 /* MinecraftOptionUtils.m */; };
 		E184A9F62FFCB2690014F9A3 /* mach_excServer.c in Sources */ = {isa = PBXBuildFile; fileRef = E184A9F42FFCB2690014F9A3 /* mach_excServer.c */; };
 		E184AA372FFD1FB30014F9A3 /* libmobileglues.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E184AA362FFD1FB30014F9A3 /* libmobileglues.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -257,6 +264,13 @@
 			remoteGlobalIDString = 78CD7DE52E36EE84003814B5;
 			remoteInfo = awt_xawt;
 		};
+		E16D43E43000ADFB0018C855 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054957C12986E8DC00EFD4CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E16D43D43000AAAE0018C855;
+			remoteInfo = tinygl4angle;
+		};
 		E184AA102FFCDCA90014F9A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 054957C12986E8DC00EFD4CE /* Project object */;
@@ -361,9 +375,11 @@
 				E1B8F99D2E2E6C810064B100 /* libMoltenVK.dylib in Embed Frameworks */,
 				E1B8F99E2E2E6C810064B100 /* libopenal.dylib in Embed Frameworks */,
 				E1B8F99F2E2E6C810064B100 /* libOSMesa.8.dylib in Embed Frameworks */,
-				78CD7DED2E36EE84003814B5 /* awt_xawt.framework in Embed Frameworks */,
 				E1B8F9A02E2E6C810064B100 /* libshaderc.dylib in Embed Frameworks */,
+				E16D44443000B1030018C855 /* libspirv-cross-c-shared.0.dylib in Embed Frameworks */,
+				E16D44423000AEEA0018C855 /* libtinygl4angle.dylib in Embed Frameworks */,
 				E1B8F9A12E2E6C810064B100 /* libvirgl_test_server.dylib in Embed Frameworks */,
+				78CD7DED2E36EE84003814B5 /* awt_xawt.framework in Embed Frameworks */,
 				78CD7DDD2E36EE68003814B5 /* AmethystAccountJNI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -522,6 +538,11 @@
 		E11CBBD42E2DE2EA00248B71 /* liblzma.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = liblzma.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/usr/lib/liblzma.tbd; sourceTree = DEVELOPER_DIR; };
 		E11CBC092E2DE84C00248B71 /* AngelAuraAmethyst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AngelAuraAmethyst.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16A6EBB30008E9E00F6EF3C /* entitlements.xcode.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = entitlements.xcode.xml; sourceTree = "<group>"; };
+		E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libtinygl4angle.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16D43DA3000AC7C0018C855 /* string_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = string_utils.h; sourceTree = "<group>"; };
+		E16D43DB3000AC7C0018C855 /* string_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = string_utils.c; sourceTree = "<group>"; };
+		E16D43DC3000AC7C0018C855 /* tinygl4angle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tinygl4angle.c; sourceTree = "<group>"; };
+		E16D44433000B1030018C855 /* libspirv-cross-c-shared.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libspirv-cross-c-shared.0.dylib"; path = "../../../Natives/external/MobileGlues/src/main/cpp/libraries/ios/libspirv-cross-c-shared.0.dylib"; sourceTree = "<group>"; };
 		E1753BBB2E27EEF500BA8320 /* AccountListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccountListViewController.m; path = Natives/AccountListViewController.m; sourceTree = SOURCE_ROOT; };
 		E1753BBC2E27EEF500BA8320 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Natives/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		E1753BBD2E27EEF500BA8320 /* CustomControlsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomControlsViewController.m; path = Natives/CustomControlsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -792,6 +813,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E16D43D33000AAAE0018C855 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E16D43E13000AD5B0018C855 /* libEGL.framework in Frameworks */,
+				E16D43E23000AD5D0018C855 /* libGLESv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8672E2DF67800557F34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1057,6 +1087,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E16D43DD3000AC7C0018C855 /* gl4es */ = {
+			isa = PBXGroup;
+			children = (
+				E16D43DA3000AC7C0018C855 /* string_utils.h */,
+				E16D43DB3000AC7C0018C855 /* string_utils.c */,
+				E16D43DC3000AC7C0018C855 /* tinygl4angle.c */,
+			);
+			name = gl4es;
+			path = Natives/external/gl4es;
+			sourceTree = SOURCE_ROOT;
+		};
 		E1753A682E27E43000BA8320 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1064,6 +1105,7 @@
 				E1ECC86A2E2DF67800557F34 /* AFNetworking.framework */,
 				78CD7DD62E36EE68003814B5 /* AmethystAccountJNI.framework */,
 				78CD7DE62E36EE84003814B5 /* awt_xawt.framework */,
+				E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1237,6 +1279,7 @@
 				E1B8F97E2E2E6C6A0064B100 /* libopenal.dylib */,
 				E1B8F97F2E2E6C6A0064B100 /* libOSMesa.8.dylib */,
 				E1B8F9802E2E6C6A0064B100 /* libshaderc.dylib */,
+				E16D44433000B1030018C855 /* libspirv-cross-c-shared.0.dylib */,
 				E1B8F9812E2E6C6A0064B100 /* libvirgl_test_server.dylib */,
 			);
 			path = Frameworks;
@@ -1389,6 +1432,7 @@
 		E1ECC7842E2DF29D00557F34 /* external */ = {
 			isa = PBXGroup;
 			children = (
+				E16D43DD3000AC7C0018C855 /* gl4es */,
 				E184A9F52FFCB2690014F9A3 /* mach */,
 				E1ECC7FF2E2DF5DE00557F34 /* UnzipKit */,
 				E11CBB522E2DB91900248B71 /* ballpa1n */,
@@ -2032,6 +2076,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E16D43D13000AAAE0018C855 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E16D43DE3000AC7C0018C855 /* string_utils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8652E2DF67800557F34 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2173,6 +2225,7 @@
 				E1ECC86F2E2DF67800557F34 /* PBXTargetDependency */,
 				78CD7DDB2E36EE68003814B5 /* PBXTargetDependency */,
 				78CD7DEB2E36EE84003814B5 /* PBXTargetDependency */,
+				E16D43E53000ADFB0018C855 /* PBXTargetDependency */,
 				E184AA112FFCDCA90014F9A3 /* PBXTargetDependency */,
 				E184AA1D2FFCDD7A0014F9A3 /* PBXTargetDependency */,
 				E184AA352FFD1D350014F9A3 /* PBXTargetDependency */,
@@ -2186,6 +2239,25 @@
 			productName = AngelAuraAmethyst;
 			productReference = E11CBC092E2DE84C00248B71 /* AngelAuraAmethyst.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E16D43D43000AAAE0018C855 /* tinygl4angle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E16D43D93000AAAE0018C855 /* Build configuration list for PBXNativeTarget "tinygl4angle" */;
+			buildPhases = (
+				E16D43D13000AAAE0018C855 /* Headers */,
+				E16D43D23000AAAE0018C855 /* Sources */,
+				E16D43D33000AAAE0018C855 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tinygl4angle;
+			packageProductDependencies = (
+			);
+			productName = tinygl4angle;
+			productReference = E16D43D53000AAAE0018C855 /* libtinygl4angle.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		E1ECC8692E2DF67800557F34 /* AFNetworking */ = {
 			isa = PBXNativeTarget;
@@ -2225,6 +2297,9 @@
 					};
 					E11CBC082E2DE84C00248B71 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					E16D43D43000AAAE0018C855 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 					E184AA0C2FFCDBA10014F9A3 = {
 						CreatedOnToolsVersion = 26.0;
@@ -2318,6 +2393,7 @@
 				78CD7DD52E36EE68003814B5 /* AmethystAccountJNI */,
 				78CD7DE52E36EE84003814B5 /* awt_xawt */,
 				E1ECC8692E2DF67800557F34 /* AFNetworking */,
+				E16D43D43000AAAE0018C855 /* tinygl4angle */,
 				E184AA232FFD13610014F9A3 /* MobileGluesPrepare */,
 				E184AA0C2FFCDBA10014F9A3 /* MobileGlues */,
 				E184AA122FFCDCFC0014F9A3 /* JavaApp */,
@@ -2597,6 +2673,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E16D43D23000AAAE0018C855 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E16D43DF3000AC7C0018C855 /* tinygl4angle.c in Sources */,
+				E16D43E03000AC7C0018C855 /* string_utils.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1ECC8662E2DF67800557F34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2631,6 +2716,11 @@
 			isa = PBXTargetDependency;
 			target = 78CD7DE52E36EE84003814B5 /* awt_xawt */;
 			targetProxy = 78CD7DEA2E36EE84003814B5 /* PBXContainerItemProxy */;
+		};
+		E16D43E53000ADFB0018C855 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E16D43D43000AAAE0018C855 /* tinygl4angle */;
+			targetProxy = E16D43E43000ADFB0018C855 /* PBXContainerItemProxy */;
 		};
 		E184AA112FFCDCA90014F9A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3733,6 +3823,147 @@
 			};
 			name = Release;
 		};
+		E16D43D63000AAAE0018C855 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Natives/resources/Frameworks";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Natives/external/mesa\"";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E16D43D73000AAAE0018C855 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Natives/resources/Frameworks";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Natives/external/mesa\"";
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E184AA0E2FFCDBA10014F9A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4174,7 +4405,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4256,7 +4487,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4317,6 +4548,15 @@
 			buildConfigurations = (
 				E11CBC212E2DE84D00248B71 /* Debug */,
 				E11CBC222E2DE84D00248B71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E16D43D93000AAAE0018C855 /* Build configuration list for PBXNativeTarget "tinygl4angle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E16D43D63000AAAE0018C855 /* Debug */,
+				E16D43D73000AAAE0018C855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

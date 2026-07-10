@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <dlfcn.h>
 
 #define GL_GLEXT_PROTOTYPES
@@ -17,10 +18,10 @@
     }
 
 #define AliasDecl(NAME, EXT) \
-    asm(".global _"# NAME "\n_" #NAME ": b _" #NAME #EXT);
+    asm(".global _"# NAME "\n_" #NAME " = _" #NAME #EXT);
 
 #define AliasDeclPriv(NAME) \
-    asm(".global _gl"# NAME "\n_gl" #NAME ": b _GL_" #NAME);
+    asm(".global _gl"# NAME "\n_gl" #NAME " = _GL_" #NAME);
 
 // Core OpenGL 2.0
 AliasDecl(glGetTexImage, ANGLE)
