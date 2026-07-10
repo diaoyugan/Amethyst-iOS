@@ -1,6 +1,14 @@
+// Defaults
+CODE_SIGN_ENTITLEMENTS = entitlements.xcode.xml
 DEVELOPMENT_TEAM[config=Debug] = 95J8WZ4TN8
 DEVELOPMENT_TEAM[config=Release] = AAAAA11111
 
+// uncomment these if you install it to jailbroken device with AppSync
+//AD_HOC_CODE_SIGNING_ALLOWED = 1
+//CODE_SIGN_ENTITLEMENTS = entitlements.sideload.xml
+//CODE_SIGN_IDENTITY =
+
+// Other stuff
 __DIAGNOSE_INVALID_DEPLOYMENT_TARGET_AS_ERROR = NO
 
 // idk but PATH doesn't work

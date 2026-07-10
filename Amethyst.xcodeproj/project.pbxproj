@@ -521,6 +521,7 @@
 		E11CBBD22E2DE25600248B71 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		E11CBBD42E2DE2EA00248B71 /* liblzma.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = liblzma.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/usr/lib/liblzma.tbd; sourceTree = DEVELOPER_DIR; };
 		E11CBC092E2DE84C00248B71 /* AngelAuraAmethyst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AngelAuraAmethyst.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16A6EBB30008E9E00F6EF3C /* entitlements.xcode.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = entitlements.xcode.xml; sourceTree = "<group>"; };
 		E1753BBB2E27EEF500BA8320 /* AccountListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccountListViewController.m; path = Natives/AccountListViewController.m; sourceTree = SOURCE_ROOT; };
 		E1753BBC2E27EEF500BA8320 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Natives/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		E1753BBD2E27EEF500BA8320 /* CustomControlsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomControlsViewController.m; path = Natives/CustomControlsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -814,6 +815,7 @@
 				054957CB2986E91000EFD4CE /* Makefile */,
 				78F6C43A2DDC419E00F91915 /* entitlements.codesign.xml */,
 				78F6C43B2DDC419E00F91915 /* entitlements.sideload.xml */,
+				E16A6EBB30008E9E00F6EF3C /* entitlements.xcode.xml */,
 				78F6C43C2DDC419E00F91915 /* entitlements.trollstore.xml */,
 				054957D02986E91000EFD4CE /* Natives */,
 				054957D12986E91000EFD4CE /* README.md */,
@@ -3114,6 +3116,7 @@
 			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
 			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "$(inherited)";
 				DEAD_CODE_STRIPPING = NO;
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
@@ -3132,6 +3135,7 @@
 			baseConfigurationReferenceAnchor = E184A9D92FFCAFA70014F9A3 /* xcconfigs */;
 			baseConfigurationReferenceRelativePath = Global.xcconfig;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "$(inherited)";
 				DEAD_CODE_STRIPPING = NO;
 				PATH = "${PATH}:/opt/procursus/bin:/opt/procursus/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin";
 				PLATFORM = 2;
@@ -3560,6 +3564,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -3664,6 +3669,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
