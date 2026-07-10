@@ -30,7 +30,15 @@ BOOL isJITEnabled(BOOL checkCSFlags) {
 
     int flags;
     csops(getpid(), 0, &flags, sizeof(flags));
-    return (flags & CS_DEBUGGED) != 0;
+    if ((flags & CS_DEBUGGED) == 0) {
+        return NO;
+    }
+    if (!DeviceHasJITFlags(JIT_FLAG_FORCE_MIRRORED | JIT_FLAG_HAS_TXM)) {
+        // Device below iOS 26 or without TXM is sufficient at this point
+        return YES;
+    }
+    // Device with iOS 26+ and TXM requires a debugger attached for JIT script to bypass TXM restrictions
+    return JIT26IsLikelyDebuggerKeepAttached();
 }
 
 void openLink(UIViewController* sender, NSURL* link) {
@@ -183,6 +191,11 @@ void JIT26PrepareRegionForPatching(void *addr, size_t size) {
 void JIT26SendJITScript(NSString* script) {
     NSCAssert(script, @"Script must not be nil");
     BreakSendJITScript((char*)script.UTF8String, script.length);
+}
+
+BOOL JIT26IsLikelyDebuggerKeepAttached(void) {
+    // getppid() always return launchd PID (1) unless debugger is actively attached
+    return getppid() != 1;
 }
 
 BOOL DeviceCanCreateRXMap(void) {
