@@ -29,6 +29,7 @@
 		78CD7DF62E36EE91003814B5 /* MinecraftAccountJNI.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8092E2E5D2F0064B100 /* MinecraftAccountJNI.m */; };
 		78CD7DF72E36EEC2003814B5 /* empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8162E2E5EAE0064B100 /* empty.m */; };
 		78CD7DF82E36EEC3003814B5 /* xawt_fake.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B8F8172E2E5EAE0064B100 /* xawt_fake.m */; };
+		E10DB2E83001F914007623A4 /* narrator_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E10DB2E73001F914007623A4 /* narrator_bridge.m */; };
 		E11CBC362E2DE8AF00248B71 /* HostManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E11CBB4D2E2DB91900248B71 /* HostManagerBridge.m */; };
 		E11CBC382E2DE8AF00248B71 /* HostManager.c in Sources */ = {isa = PBXBuildFile; fileRef = E11CBB502E2DB91900248B71 /* HostManager.c */; };
 		E11CBC3B2E2DE8AF00248B71 /* DBNumberedSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E11CBB1C2E2DB8D400248B71 /* DBNumberedSlider.m */; };
@@ -431,6 +432,7 @@
 		78F6C43A2DDC419E00F91915 /* entitlements.codesign.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = entitlements.codesign.xml; sourceTree = "<group>"; };
 		78F6C43B2DDC419E00F91915 /* entitlements.sideload.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = entitlements.sideload.xml; sourceTree = "<group>"; };
 		78F6C43C2DDC419E00F91915 /* entitlements.trollstore.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = entitlements.trollstore.xml; sourceTree = "<group>"; };
+		E10DB2E73001F914007623A4 /* narrator_bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = narrator_bridge.m; path = Natives/narrator_bridge.m; sourceTree = SOURCE_ROOT; };
 		E11CBAFF2E2DB7FD00248B71 /* CurseForgeAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurseForgeAPI.h; sourceTree = "<group>"; };
 		E11CBB002E2DB7FD00248B71 /* CurseForgeAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurseForgeAPI.m; sourceTree = "<group>"; };
 		E11CBB012E2DB7FD00248B71 /* ModpackAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModpackAPI.h; sourceTree = "<group>"; };
@@ -883,6 +885,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		E10DB2E53001F904007623A4 /* narrator */ = {
+			isa = PBXGroup;
+			children = (
+				E10DB2E73001F914007623A4 /* narrator_bridge.m */,
+			);
+			path = narrator;
+			sourceTree = "<group>";
+		};
 		E11CBB072E2DB7FD00248B71 /* modpack */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1149,7 @@
 		E1753BB12E27EE1900BA8320 /* AngelAuraAmethyst */ = {
 			isa = PBXGroup;
 			children = (
+				E10DB2E53001F904007623A4 /* narrator */,
 				E1B8F8022E2E5C6C0064B100 /* authenticator */,
 				E1ECC7842E2DF29D00557F34 /* external */,
 				E1ECC7832E2DF27100557F34 /* include */,
@@ -2657,6 +2668,7 @@
 				E1B8F8072E2E5CA30064B100 /* MicrosoftAuthenticator.m in Sources */,
 				E11CBC5C2E2DE8AF00248B71 /* gl_bridge.m in Sources */,
 				E11CBC5E2E2DE8AF00248B71 /* osm_bridge.m in Sources */,
+				E10DB2E83001F914007623A4 /* narrator_bridge.m in Sources */,
 				E11CBC612E2DE8AF00248B71 /* ControlButton.m in Sources */,
 				E11CBC632E2DE8AF00248B71 /* ControlDrawer.m in Sources */,
 				E11CBC652E2DE8AF00248B71 /* ControlJoystick.m in Sources */,

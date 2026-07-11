@@ -14,7 +14,7 @@
 @end
 
 AVSpeechSynthesizer *synthesizer;
-JNIEXPORT void JNICALL Java_com_mojang_text2speech_nativeStartSpeaking(JNIEnv *env, jclass cls, jstring msg, jfloat volume) {
+JNIEXPORT void JNICALL Java_com_mojang_text2speech_NarratorOSX_nativeStartSpeaking(JNIEnv *env, jclass cls, jstring msg, jfloat volume) {
     const char* stringChars = (*env)->GetStringUTFChars(env, msg, NULL);
     NSString *objCString = @(stringChars);
     AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:objCString];
@@ -23,6 +23,6 @@ JNIEXPORT void JNICALL Java_com_mojang_text2speech_nativeStartSpeaking(JNIEnv *e
     (*env)->ReleaseStringUTFChars(env, msg, stringChars);
 }
 
-JNIEXPORT void JNICALL Java_com_mojang_text2speech_nativeClearQueue(JNIEnv *env, jclass cls) {
+JNIEXPORT void JNICALL Java_com_mojang_text2speech_NarratorOSX_nativeClearQueue(JNIEnv *env, jclass cls) {
     [AVSpeechSynthesizer.sharedInstance stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
 }
