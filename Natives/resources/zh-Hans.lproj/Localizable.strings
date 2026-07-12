@@ -14,7 +14,7 @@
 
 // The play button
 "Play" = "启动游戏";
-"Details" = "Details";
+"Details" = "信息";
 
 // Version categories
 "Installed" = "已安装";
