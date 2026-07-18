@@ -241,6 +241,7 @@ der Minecraft-Version zu wählen. Verringerte Auflösung reduziert die Arbeitsla
 "preference.title.java_args" = "JVM-Start-Argumente";
 "preference.detail.java_args" = "Argumente an Java übergeben, wenn Minecraft gestartet wird. Sei vorsichtig, dies kann den Absturz des Spiels verursachen, wenn es falsch geändert wird.";
 "preference.placeholder.java_args" = "Argumente angeben...";
+"preference.title.env_variables" = "Umgebungsvariablen";
 "preference.detail.env_variables" = "Benutzerdefinierte Umgebungsvariablen beim Starten von Minecraft festlegen. Vorsicht, falsche Änderungen können zu Spielabstürzen führen.";
 "preference.placeholder.env_variables" = "Variablen angeben...";
 "preference.title.auto_ram" = "Auto-RAM";
@@ -249,6 +250,7 @@ der Minecraft-Version zu wählen. Verringerte Auflösung reduziert die Arbeitsla
 "preference.title.allocated_memory" = "RAM-Zuweisung (MB)";
 "preference.detail.allocated_memory" = "Legt fest, wie viel RAM Minecraft gegeben wird";
 "preference.warn.allocated_memory" = "Aufgrund von Einschränkungen des Betriebssystems kann diese Option zu Instabilität bei diesem und höheren Werten führen. Sei vorsichtig.";
+"preference.title.custom_env" = "Umgebungsvariablen";
 "preference.detail.custom_env" = "Diese Option befindet sich in Entwicklung. Erstelle und bearbeite in der Zwischenzeit custom_env.txt.";
 "preference.title.debug_skip_wait_jit" = "Überspringe den \"Warten auf JIT\"-Dialog";
 "preference.detail.debug_skip_wait_jit" = "Dies ermöglicht es dir nicht, ohne JIT zu starten. Stattdessen wird die Debuggerprüfung übersprungen, da die Überprüfung bei bestimmten Jailbreaks fehlschlägt.";
