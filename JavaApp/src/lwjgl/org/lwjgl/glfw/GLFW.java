@@ -847,6 +847,16 @@ public class GLFW
         return 1L;
     }
 
+    /**
+     * Returns a stable name for the synthetic monitor exposed by the iOS
+     * compatibility layer. There is no native GLFW monitor behind handle 1,
+     * so calling the generated native binding here would be invalid.
+     */
+    @NativeType("char const *")
+    public static @Nullable String glfwGetMonitorName(@NativeType("GLFWmonitor *") long monitor) {
+        return "iOS Display";
+    }
+
     public static void glfwGetMonitorPos(@NativeType("GLFWmonitor *") long monitor, @Nullable @NativeType("int *") IntBuffer xpos, @Nullable @NativeType("int *") IntBuffer ypos) {
         if (CHECKS) {
             checkSafe(xpos, 1);
@@ -1380,5 +1390,15 @@ public class GLFW
         @NativeType("GLFWimestatusfun") @Nullable GLFWIMEStatusCallbackI callback
     ) {
         return null;
+    }
+
+    public static void glfwSetPreeditCursorRectangle(
+        @NativeType("GLFWwindow *") long window,
+        int x,
+        int y,
+        int width,
+        int height
+    ) {
+        // iOS text composition is positioned by the native launcher UI.
     }
 }

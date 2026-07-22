@@ -94,7 +94,10 @@ jobs:
             EXTRA_JCFLAGS="--add-exports=java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports=java.desktop/sun.font=ALL-UNNAMED"
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/util/spvc/Spvc.class'
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/vulkan/VkVertexInputBindingDivisorDescription.class'
-          javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.glfw.GLFW | grep -q 'glfwSetPreeditCallback'
+          GLFW_API=$(javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.glfw.GLFW)
+          grep -q 'glfwSetPreeditCallback' <<<"$GLFW_API"
+          grep -q 'java.lang.String glfwGetMonitorName(long)' <<<"$GLFW_API"
+          grep -q 'void glfwSetPreeditCursorRectangle(long, int, int, int, int)' <<<"$GLFW_API"
           javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.system.JNI | grep 'invokeI(boolean, long)' >/dev/null
           javap -classpath JavaApp/build/lwjgl.jar -c org.lwjgl.glfw.GLFW | grep 'JNI.invokeI:(ZJ)I' >/dev/null
 
