@@ -50,7 +50,13 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
         '/build_target\(ios_/ { /ios_device_arm64_platform/! s/^([[:space:]]*)/\1#/; }' \
         generate-darwin-source-and-headers.py
     python3 generate-darwin-source-and-headers.py --only-ios
-    xcodebuild -arch arm64 -sdk iphoneos -target libffi-iOS
+    # The legacy Xcode project still tries to publish headers for every iOS
+    # architecture even though only the arm64 configuration was generated.
+    sed -i.bak -E \
+        '/(ffi|ffitarget)_(armv7|x86_64)\.h/d' \
+        libffi.xcodeproj/project.pbxproj
+    xcodebuild -arch arm64 -sdk iphoneos -target libffi-iOS \
+        IPHONEOS_DEPLOYMENT_TARGET=12.0
     xcrun lipo -verify_arch arm64 build/Release-iphoneos/libffi.a
 )
 
