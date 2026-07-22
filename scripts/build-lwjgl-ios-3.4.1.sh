@@ -122,7 +122,10 @@ LWJGL_ANT_FLAGS=(
     cd "$LWJGL_SOURCE"
     ant "${LWJGL_ANT_FLAGS[@]}" compile-templates generate
     cp "$LWJGL_FULL_JNI_BACKUP" "$LWJGL_FULL_JNI_SOURCE"
+    grep -F 'Java_org_lwjgl_system_JNI_invokeI__ZJ' "$LWJGL_FULL_JNI_SOURCE" >/dev/null
+    echo "Restored full JNI bridge ($(wc -l < "$LWJGL_FULL_JNI_SOURCE") lines)"
     ant "${LWJGL_ANT_FLAGS[@]}" compile-native
+    grep -F 'Java_org_lwjgl_system_JNI_invokeI__ZJ' "$LWJGL_FULL_JNI_SOURCE" >/dev/null
 )
 
 FRAMEWORKS="$OVERLAY_OUTPUT/Natives/resources/Frameworks"
@@ -145,6 +148,9 @@ done < <(find "$FRAMEWORKS" -name '*.dylib' -print)
 
 # GLFW 3.4.1 calls this overload during glfwInit. Fail the dependency build
 # before caching an incomplete core native again.
+echo "LWJGL core invokeI exports:"
+xcrun nm -gU "$FRAMEWORKS/liblwjgl.dylib" \
+    | grep '_Java_org_lwjgl_system_JNI_invokeI' || true
 xcrun nm -gU "$FRAMEWORKS/liblwjgl.dylib" \
     | grep '_Java_org_lwjgl_system_JNI_invokeI__ZJ' >/dev/null
 
