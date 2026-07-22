@@ -57,7 +57,7 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
         libffi.xcodeproj/project.pbxproj
     xcodebuild -arch arm64 -sdk iphoneos -target libffi-iOS \
         IPHONEOS_DEPLOYMENT_TARGET=12.0
-    xcrun lipo -verify_arch arm64 build/Release-iphoneos/libffi.a
+    xcrun lipo build/Release-iphoneos/libffi.a -verify_arch arm64
 )
 
 LWJGL_NATIVE="$LWJGL_SOURCE/bin/libs/native/macos/arm64/org/lwjgl"
