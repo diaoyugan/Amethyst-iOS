@@ -229,9 +229,13 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     }
 
     // Setup options.txt
-    BOOL useVulkan = !launchJar
-        && [graphicsBackend isEqualToString:@"vulkan"]
+    BOOL supportsGraphicsBackend = !launchJar
         && [MinecraftOptionUtils supportsVulkanForVersionMetadata:launchTarget];
+    BOOL forceGraphicsBackend = supportsGraphicsBackend
+        && ([graphicsBackend isEqualToString:@"opengl"]
+            || [graphicsBackend isEqualToString:@"vulkan"]);
+    BOOL useVulkan = forceGraphicsBackend
+        && [graphicsBackend isEqualToString:@"vulkan"];
     [MinecraftOptionUtils setupOptionsAtGameDir:gameDir
                        preferredGraphicsBackend:graphicsBackend
                                 versionMetadata:launchJar ? nil : launchTarget];
@@ -253,6 +257,11 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     margv[++margc] = [NSString stringWithFormat:@"-DUIScreen.maximumFramesPerSecond=%d", (int)UIScreen.mainScreen.maximumFramesPerSecond].UTF8String;
     margv[++margc] = "-Dorg.lwjgl.glfw.checkThread0=false";
     margv[++margc] = "-Dorg.lwjgl.system.allocator=system";
+    if (forceGraphicsBackend) {
+        // Minecraft 26.2 can reset options.txt after a failed startup. Its
+        // launch argument is authoritative and preserves an explicit profile choice.
+        margv[++margc] = [NSString stringWithFormat:@"-Dpojav.graphicsBackend=%@", graphicsBackend].UTF8String;
+    }
     if (useVulkan) {
         margv[++margc] = "-Dorg.lwjgl.vulkan.libname=libMoltenVK.dylib";
         margv[++margc] = "-Dorg.lwjgl.spvc.libname=spirv-cross-c-shared.0";

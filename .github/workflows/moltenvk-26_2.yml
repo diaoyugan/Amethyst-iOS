@@ -12,9 +12,13 @@ on:
       - '.github/workflows/moltenvk-26_2.yml'
       - 'scripts/build-lwjgl-ios-3.4.1.sh'
       - 'scripts/lwjgl-ios-3.4.1.patch'
+      - 'scripts/mobileglues-ios-symbol-lookup.patch'
       - 'JavaApp/libs/lwjgl/**'
       - 'JavaApp/src/launcher/net/kdt/pojavlaunch/PojavLauncher.java'
+      - 'JavaApp/src/launcher/net/kdt/pojavlaunch/Tools.java'
       - 'JavaApp/src/lwjgl/**'
+      - 'Natives/JavaLauncher.m'
+      - 'Natives/MinecraftOptionUtils.*'
       - 'Natives/LauncherProfileEditorViewController.m'
       - 'Natives/MinecraftOptionUtils.*'
       - 'Natives/JavaLauncher.m'
@@ -141,11 +145,24 @@ jobs:
           name: amethyst-minecraft-26.2-ios-dependencies
           path: .
 
+      - name: Patch MobileGlues symbol lookup for iOS
+        run: |
+          git -C Natives/external/MobileGlues apply --check "$GITHUB_WORKSPACE/scripts/mobileglues-ios-symbol-lookup.patch"
+          git -C Natives/external/MobileGlues apply "$GITHUB_WORKSPACE/scripts/mobileglues-ios-symbol-lookup.patch"
+
       - name: Build test IPA
         run: |
           export PATH=/opt/homebrew/bin:$PATH
           export SLIMMED=1
           gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=2 BOOTJDK="$JAVA_HOME/bin"
+
+      - name: Verify MobileGlues desktop GL exports
+        run: |
+          MOBILEGLUES_DYLIB="Natives/build/AngelAuraAmethyst.app/Frameworks/libmobileglues.dylib"
+          test -f "$MOBILEGLUES_DYLIB"
+          nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glGetString$'
+          nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glGenSamplers$'
+          nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glXGetProcAddress$'
 
       - name: Upload test IPA
         uses: actions/upload-artifact@v4

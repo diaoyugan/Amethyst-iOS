@@ -1,0 +1,33 @@
+diff --git a/src/main/cpp/glx/lookup.cpp b/src/main/cpp/glx/lookup.cpp
+index bd569eb..9a5e1f4 100644
+--- a/src/main/cpp/glx/lookup.cpp
++++ b/src/main/cpp/glx/lookup.cpp
+@@ -42,7 +42,27 @@ void *glXGetProcAddress(const char *name) {
+   LOG()
+   std::string real_func_name = handle_multidraw_func_name(std::string(name));
+ #ifdef __APPLE__
+-  return dlsym((void *)(~(uintptr_t)0), real_func_name.c_str());
++  // RTLD_NEXT skips MobileGlues itself and returns the underlying OpenGL ES
++  // symbol. LWJGL then sees the host GLES version instead of MobileGlues' GL
++  // compatibility version and leaves desktop GL entry points unavailable.
++  // Resolve against this image first so calls go through the wrappers that
++  // implement desktop OpenGL on top of GLES.
++  static void *mobileglues_handle = []() -> void * {
++    Dl_info info{};
++    if (dladdr(reinterpret_cast<const void *>(&glXGetProcAddress), &info) == 0 ||
++        info.dli_fname == nullptr) {
++      return nullptr;
++    }
++    return dlopen(info.dli_fname, RTLD_LAZY | RTLD_NOLOAD);
++  }();
++
++  void *proc = mobileglues_handle
++                   ? dlsym(mobileglues_handle, real_func_name.c_str())
++                   : nullptr;
++  if (!proc) {
++    proc = dlsym(RTLD_NEXT, real_func_name.c_str());
++  }
++  return proc;
+ #else
+ 
+   void *proc = nullptr;

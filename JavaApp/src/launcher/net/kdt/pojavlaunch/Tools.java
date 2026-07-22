@@ -137,6 +137,14 @@ public final class Tools {
                 profile
             ), varArgMap
         );
+        String forcedGraphicsBackend = System.getProperty("pojav.graphicsBackend");
+        if ("opengl".equals(forcedGraphicsBackend) || "vulkan".equals(forcedGraphicsBackend)) {
+            List<String> forcedArgs = new ArrayList<String>(Arrays.asList(argsFromJson));
+            forcedArgs.add("--graphicsBackend");
+            forcedArgs.add(forcedGraphicsBackend);
+            argsFromJson = forcedArgs.toArray(new String[0]);
+            System.out.println("Forcing Minecraft graphics backend: " + forcedGraphicsBackend);
+        }
         // Tools.dialogOnUiThread(this, "Result args", Arrays.asList(argsFromJson).toString());
         return argsFromJson;
     }
