@@ -78,13 +78,12 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
 
 LWJGL_NATIVE="$LWJGL_SOURCE/bin/libs/native/macos/arm64/org/lwjgl"
 mkdir -p \
-    "$LWJGL_NATIVE/core" \
     "$LWJGL_NATIVE/freetype" \
     "$LWJGL_NATIVE/openal" \
     "$LWJGL_NATIVE/shaderc" \
     "$LWJGL_NATIVE/spvc" \
     "$LWJGL_NATIVE/vulkan"
-cp "$LIBFFI_ARCHIVE" "$LWJGL_NATIVE/core/libffi.a"
+cp "$LIBFFI_ARCHIVE" "$LWJGL_NATIVE/libffi.a"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libfreetype.dylib" "$LWJGL_NATIVE/freetype/libfreetype.dylib"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libopenal.dylib" "$LWJGL_NATIVE/openal/libopenal.dylib"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libshaderc.dylib" "$LWJGL_NATIVE/shaderc/libshaderc.dylib"
