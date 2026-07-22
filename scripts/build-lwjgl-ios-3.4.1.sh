@@ -93,7 +93,7 @@ export LWJGL_BUILD_OFFLINE=1
         -Dbinding.renderdoc=false -Dbinding.rpmalloc=false -Dbinding.sdl=false -Dbinding.spng=false \
         -Dbinding.sse=false -Dbinding.tinyexr=false -Dbinding.tootle=false \
         -Dbinding.xxhash=false -Dbinding.yoga=false -Dbinding.zstd=false \
-        -Djavadoc.skip=true compile-native
+        -Djavadoc.skip=true compile-templates compile-native
 )
 
 FRAMEWORKS="$OVERLAY_OUTPUT/Natives/resources/Frameworks"
