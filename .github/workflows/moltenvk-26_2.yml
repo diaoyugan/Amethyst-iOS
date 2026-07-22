@@ -11,6 +11,7 @@ on:
     paths:
       - '.github/workflows/moltenvk-26_2.yml'
       - 'scripts/build-lwjgl-ios-3.4.1.sh'
+      - 'scripts/build-shaderc-ios.sh'
       - 'scripts/lwjgl-ios-3.4.1.patch'
       - 'scripts/mobileglues-ios-symbol-lookup.patch'
       - 'JavaApp/libs/lwjgl/**'
@@ -29,6 +30,7 @@ permissions:
 
 env:
   MOLTENVK_VERSION: v1.4.1
+  SHADERC_VERSION: v2026.1
 
 jobs:
   build-dependencies:
@@ -48,6 +50,13 @@ jobs:
         with:
           path: ${{ runner.temp }}/overlay
           key: amethyst-ios-vulkan-${{ runner.os }}-${{ runner.arch }}-${{ env.MOLTENVK_VERSION }}-${{ hashFiles('scripts/build-lwjgl-ios-3.4.1.sh', 'scripts/lwjgl-ios-3.4.1.patch') }}
+
+      - name: Restore iOS Shaderc cache
+        id: shaderc-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/shaderc-overlay
+          key: amethyst-ios-shaderc-${{ runner.os }}-${{ runner.arch }}-${{ env.SHADERC_VERSION }}-${{ hashFiles('scripts/build-shaderc-ios.sh') }}
 
       - name: Seed cache from a previous successful dependency job
         if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id != ''
@@ -73,6 +82,10 @@ jobs:
         if: steps.dependency-cache.outputs.cache-hit == 'true' || inputs.dependency_run_id != ''
         run: brew install make
 
+      - name: Install Shaderc build tools
+        if: steps.shaderc-cache.outputs.cache-hit != 'true'
+        run: brew install cmake ninja
+
       - name: Build LWJGL 3.4.1 for iOS
         if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id == ''
         run: bash scripts/build-lwjgl-ios-3.4.1.sh "$GITHUB_WORKSPACE" "$RUNNER_TEMP/overlay"
@@ -88,6 +101,19 @@ jobs:
           test -n "$MOLTENVK_BINARY"
           cp "$MOLTENVK_BINARY" "$RUNNER_TEMP/overlay/Natives/resources/Frameworks/libMoltenVK.dylib"
           xcrun vtool -show-build "$RUNNER_TEMP/overlay/Natives/resources/Frameworks/libMoltenVK.dylib" | grep -q 'platform IOS'
+
+      - name: Build Shaderc 2026.1 for iOS
+        if: steps.shaderc-cache.outputs.cache-hit != 'true'
+        run: bash scripts/build-shaderc-ios.sh "$RUNNER_TEMP/shaderc-overlay"
+
+      - name: Merge and verify Shaderc overlay
+        run: |
+          SHADERC_DYLIB="$RUNNER_TEMP/shaderc-overlay/Natives/resources/Frameworks/libshaderc.dylib"
+          test -f "$SHADERC_DYLIB"
+          xcrun vtool -show-build "$SHADERC_DYLIB" | grep -q 'platform IOS'
+          xcrun dyld_info -exports "$SHADERC_DYLIB" | grep -q '_shaderc_compile_options_set_max_id_bound'
+          mkdir -p "$RUNNER_TEMP/overlay/Natives/resources/Frameworks"
+          cp "$SHADERC_DYLIB" "$RUNNER_TEMP/overlay/Natives/resources/Frameworks/libshaderc.dylib"
 
       - name: Apply dependency overlay
         run: rsync -a "$RUNNER_TEMP/overlay/" "$GITHUB_WORKSPACE/"
@@ -159,10 +185,13 @@ jobs:
       - name: Verify MobileGlues desktop GL exports
         run: |
           MOBILEGLUES_DYLIB="Natives/build/AngelAuraAmethyst.app/Frameworks/libmobileglues.dylib"
+          SHADERC_DYLIB="Natives/build/AngelAuraAmethyst.app/Frameworks/libshaderc.dylib"
           test -f "$MOBILEGLUES_DYLIB"
+          test -f "$SHADERC_DYLIB"
           nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glGetString$'
           nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glGenSamplers$'
           nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glXGetProcAddress$'
+          nm -gU "$SHADERC_DYLIB" | grep -q ' _shaderc_compile_options_set_max_id_bound$'
 
       - name: Upload test IPA
         uses: actions/upload-artifact@v4
