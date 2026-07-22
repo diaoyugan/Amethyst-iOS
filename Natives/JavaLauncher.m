@@ -255,7 +255,7 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     margv[++margc] = "-Dorg.lwjgl.system.allocator=system";
     if (useVulkan) {
         margv[++margc] = "-Dorg.lwjgl.vulkan.libname=libMoltenVK.dylib";
-        margv[++margc] = "-Dorg.lwjgl.spvc.libname=libspirv-cross-c-shared.0.dylib";
+        margv[++margc] = "-Dorg.lwjgl.spvc.libname=spirv-cross-c-shared.0";
     }
     //margv[++margc] = "-Dorg.lwjgl.util.NoChecks=true";
     margv[++margc] = "-Dlog4j2.formatMsgNoLookups=true";
