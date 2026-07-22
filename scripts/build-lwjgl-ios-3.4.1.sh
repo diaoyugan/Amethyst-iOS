@@ -93,22 +93,36 @@ touch "$LWJGL_SOURCE/bin/libs/native/macos/arm64/touch.txt"
 
 export LWJGL_BUILD_ARCH=arm64
 export LWJGL_BUILD_OFFLINE=1
+
+# The JNI generator only emits signatures used by the bindings enabled for the
+# current build. We package the complete Maven release jars below, so keep the
+# complete release JNI bridge instead of the reduced file generated for this
+# iOS-only module selection.
+LWJGL_FULL_JNI_SOURCE="$LWJGL_SOURCE/modules/lwjgl/core/src/generated/c/org_lwjgl_system_JNI.c"
+LWJGL_FULL_JNI_BACKUP="${RUNNER_TEMP:-/tmp}/org_lwjgl_system_JNI-3.4.1-full.c"
+cp "$LWJGL_FULL_JNI_SOURCE" "$LWJGL_FULL_JNI_BACKUP"
+
+LWJGL_ANT_FLAGS=(
+    -Dplatform.macos=true
+    -Dbinding.assimp=false -Dbinding.bgfx=false -Dbinding.cuda=false
+    -Dbinding.egl=false -Dbinding.fmod=false -Dbinding.harfbuzz=false
+    -Dbinding.hwloc=false -Dbinding.jawt=false -Dbinding.jemalloc=false -Dbinding.ktx=false
+    -Dbinding.libdivide=false -Dbinding.llvm=false -Dbinding.lmdb=false
+    -Dbinding.lz4=false -Dbinding.meow=false -Dbinding.meshoptimizer=false
+    -Dbinding.msdfgen=false -Dbinding.nanovg=false -Dbinding.nfd=false
+    -Dbinding.nuklear=false -Dbinding.odbc=false -Dbinding.opencl=false
+    -Dbinding.opengles=false -Dbinding.openvr=false -Dbinding.openxr=false
+    -Dbinding.opus=false -Dbinding.par=false -Dbinding.remotery=false
+    -Dbinding.renderdoc=false -Dbinding.rpmalloc=false -Dbinding.sdl=false -Dbinding.spng=false
+    -Dbinding.sse=false -Dbinding.tinyexr=false -Dbinding.tootle=false
+    -Dbinding.xxhash=false -Dbinding.yoga=false -Dbinding.zstd=false
+    -Djavadoc.skip=true
+)
 (
     cd "$LWJGL_SOURCE"
-    ant -Dplatform.macos=true \
-        -Dbinding.assimp=false -Dbinding.bgfx=false -Dbinding.cuda=false \
-        -Dbinding.egl=false -Dbinding.fmod=false -Dbinding.harfbuzz=false \
-        -Dbinding.hwloc=false -Dbinding.jawt=false -Dbinding.jemalloc=false -Dbinding.ktx=false \
-        -Dbinding.libdivide=false -Dbinding.llvm=false -Dbinding.lmdb=false \
-        -Dbinding.lz4=false -Dbinding.meow=false -Dbinding.meshoptimizer=false \
-        -Dbinding.msdfgen=false -Dbinding.nanovg=false -Dbinding.nfd=false \
-        -Dbinding.nuklear=false -Dbinding.odbc=false -Dbinding.opencl=false \
-        -Dbinding.opengles=false -Dbinding.openvr=false -Dbinding.openxr=false \
-        -Dbinding.opus=false -Dbinding.par=false -Dbinding.remotery=false \
-        -Dbinding.renderdoc=false -Dbinding.rpmalloc=false -Dbinding.sdl=false -Dbinding.spng=false \
-        -Dbinding.sse=false -Dbinding.tinyexr=false -Dbinding.tootle=false \
-        -Dbinding.xxhash=false -Dbinding.yoga=false -Dbinding.zstd=false \
-        -Djavadoc.skip=true compile-templates compile-native
+    ant "${LWJGL_ANT_FLAGS[@]}" compile-templates
+    cp "$LWJGL_FULL_JNI_BACKUP" "$LWJGL_FULL_JNI_SOURCE"
+    ant "${LWJGL_ANT_FLAGS[@]}" compile-native
 )
 
 FRAMEWORKS="$OVERLAY_OUTPUT/Natives/resources/Frameworks"
@@ -128,5 +142,10 @@ while IFS= read -r dylib; do
     file "$dylib" | grep -q 'arm64'
     xcrun vtool -show-build "$dylib" | grep -q 'platform IOS'
 done < <(find "$FRAMEWORKS" -name '*.dylib' -print)
+
+# GLFW 3.4.1 calls this overload during glfwInit. Fail the dependency build
+# before caching an incomplete core native again.
+xcrun nm -gU "$FRAMEWORKS/liblwjgl.dylib" \
+    | grep '_Java_org_lwjgl_system_JNI_invokeI__ZJ' >/dev/null
 
 echo "LWJGL ${LWJGL_VERSION} iOS overlay created at $OVERLAY_OUTPUT"
