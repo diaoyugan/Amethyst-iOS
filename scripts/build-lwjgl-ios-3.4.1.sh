@@ -9,6 +9,7 @@ fi
 AMETHYST_ROOT=$(cd "$1" && pwd)
 OVERLAY_OUTPUT=$2
 LWJGL_VERSION=3.4.1
+LWJGL_REVISION=b800ccffab14396fc529ddb6c931b7c5c5226763
 LWJGL_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-lwjgl-${LWJGL_VERSION}"
 LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-3.4.6"
 
@@ -18,7 +19,16 @@ if [[ -z "$OVERLAY_OUTPUT" || "$OVERLAY_OUTPUT" == "/" || "$OVERLAY_OUTPUT" == "
 fi
 
 rm -rf "$LWJGL_SOURCE" "$LIBFFI_SOURCE" "$OVERLAY_OUTPUT"
-git clone --depth 1 --branch "$LWJGL_VERSION" https://github.com/LWJGL/lwjgl3.git "$LWJGL_SOURCE"
+git init "$LWJGL_SOURCE"
+git -C "$LWJGL_SOURCE" remote add origin https://github.com/LWJGL/lwjgl3.git
+git -C "$LWJGL_SOURCE" fetch --depth 1 origin \
+    "refs/tags/${LWJGL_VERSION}:refs/tags/${LWJGL_VERSION}"
+FETCHED_LWJGL_REVISION=$(git -C "$LWJGL_SOURCE" rev-parse "${LWJGL_VERSION}^{}")
+if [[ "$FETCHED_LWJGL_REVISION" != "$LWJGL_REVISION" ]]; then
+    echo "LWJGL tag ${LWJGL_VERSION} resolved to unexpected commit ${FETCHED_LWJGL_REVISION}" >&2
+    exit 1
+fi
+git -C "$LWJGL_SOURCE" checkout --detach "$LWJGL_REVISION"
 git -C "$LWJGL_SOURCE" apply "$AMETHYST_ROOT/scripts/lwjgl-ios-3.4.1.patch"
 
 # Populate the Java build toolchain while network access is enabled. Native
@@ -32,8 +42,15 @@ mkdir -p "$LIBFFI_SOURCE"
 tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
 (
     cd "$LIBFFI_SOURCE"
+    # libffi 3.4.6's --only-ios still generates obsolete i386/armv7 targets.
+    # Xcode 16 no longer ships an i386 simulator toolchain, so generate only
+    # the arm64 device headers and archive required by this iOS build.
+    sed -i.bak -E \
+        '/build_target\(ios_/ { /ios_device_arm64_platform/! s/^([[:space:]]*)/\1#/; }' \
+        generate-darwin-source-and-headers.py
     python3 generate-darwin-source-and-headers.py --only-ios
     xcodebuild -arch arm64 -sdk iphoneos -target libffi-iOS
+    xcrun lipo -verify_arch arm64 build/Release-iphoneos/libffi.a
 )
 
 LWJGL_NATIVE="$LWJGL_SOURCE/bin/libs/native/macos/arm64/org/lwjgl"
