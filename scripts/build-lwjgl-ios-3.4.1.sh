@@ -55,8 +55,17 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
     # "xcrun -sdk iphoneos clang -target arm64-apple-ios" compiler. Build it
     # directly instead of using libffi's legacy multi-platform Xcode project,
     # which emits macOS-tagged objects on current Apple Silicon runners.
-    make -C build_iphoneos-arm64 -j"$(sysctl -n hw.logicalcpu)"
+    IOS_SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
+    make -C build_iphoneos-arm64 -j"$(sysctl -n hw.logicalcpu)" \
+        CC="xcrun -sdk iphoneos clang -target arm64-apple-ios14.0" \
+        CFLAGS="-Wall -isysroot $IOS_SDKROOT -miphoneos-version-min=14.0 -fexceptions"
     xcrun lipo "$LIBFFI_ARCHIVE" -verify_arch arm64
+    mkdir -p verify-ios-object
+    (
+        cd verify-ios-object
+        xcrun ar -x "$LIBFFI_ARCHIVE" prep_cif.o
+        xcrun vtool -show-build prep_cif.o | grep -q 'platform IOS'
+    )
 )
 
 LWJGL_NATIVE="$LWJGL_SOURCE/bin/libs/native/macos/arm64/org/lwjgl"
