@@ -13,7 +13,8 @@ LWJGL_REVISION=b800ccffab14396fc529ddb6c931b7c5c5226763
 LIBFFI_VERSION=3.4.8
 LWJGL_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-lwjgl-${LWJGL_VERSION}"
 LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-${LIBFFI_VERSION}"
-LIBFFI_ARCHIVE="$LIBFFI_SOURCE/build_iphoneos-arm64/.libs/libffi.a"
+LIBFFI_BUILD="$LIBFFI_SOURCE/build_iphoneos-arm64"
+LIBFFI_ARCHIVE="$LIBFFI_BUILD/.libs/libffi.a"
 
 if [[ -z "$OVERLAY_OUTPUT" || "$OVERLAY_OUTPUT" == "/" || "$OVERLAY_OUTPUT" == "$AMETHYST_ROOT" ]]; then
     echo "refusing unsafe overlay output path: $OVERLAY_OUTPUT" >&2
@@ -51,14 +52,21 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
         '/build_target\(ios_/ { /ios_device_arm64_platform/! s/^([[:space:]]*)/\1#/; }' \
         generate-darwin-source-and-headers.py
     python3 generate-darwin-source-and-headers.py --only-ios
-    # build_target configured this directory with an explicit
-    # "xcrun -sdk iphoneos clang -target arm64-apple-ios" compiler. Build it
-    # directly instead of using libffi's legacy multi-platform Xcode project,
-    # which emits macOS-tagged objects on current Apple Silicon runners.
+    # Reconfigure the generated arm64 directory so libtool records the complete
+    # iOS target triple. Its default unversioned target plus bitcode flags emit
+    # macOS-tagged objects on current Apple Silicon runners.
     IOS_SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
-    make -C build_iphoneos-arm64 -j"$(sysctl -n hw.logicalcpu)" \
-        CC="xcrun -sdk iphoneos clang -target arm64-apple-ios14.0" \
-        CFLAGS="-Wall -isysroot $IOS_SDKROOT -miphoneos-version-min=14.0 -fexceptions"
+    make -C "$LIBFFI_BUILD" distclean
+    (
+        cd "$LIBFFI_BUILD"
+        env \
+            CC="xcrun -sdk iphoneos clang -target arm64-apple-ios14.0" \
+            LD="xcrun -sdk iphoneos ld" \
+            CFLAGS="-Wall -isysroot $IOS_SDKROOT -miphoneos-version-min=14.0 -fexceptions" \
+            ../configure --host=arm64-apple-ios --build="$(uname -m)-apple-darwin" \
+                --disable-shared --enable-static
+        make -j"$(sysctl -n hw.logicalcpu)"
+    )
     xcrun lipo "$LIBFFI_ARCHIVE" -verify_arch arm64
     mkdir -p verify-ios-object
     (
