@@ -10,8 +10,9 @@ AMETHYST_ROOT=$(cd "$1" && pwd)
 OVERLAY_OUTPUT=$2
 LWJGL_VERSION=3.4.1
 LWJGL_REVISION=b800ccffab14396fc529ddb6c931b7c5c5226763
+LIBFFI_VERSION=3.4.8
 LWJGL_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-lwjgl-${LWJGL_VERSION}"
-LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-3.4.6"
+LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-${LIBFFI_VERSION}"
 
 if [[ -z "$OVERLAY_OUTPUT" || "$OVERLAY_OUTPUT" == "/" || "$OVERLAY_OUTPUT" == "$AMETHYST_ROOT" ]]; then
     echo "refusing unsafe overlay output path: $OVERLAY_OUTPUT" >&2
@@ -36,13 +37,13 @@ git -C "$LWJGL_SOURCE" apply "$AMETHYST_ROOT/scripts/lwjgl-ios-3.4.1.patch"
 ant -f "$LWJGL_SOURCE/update-dependencies.xml" update-dependencies
 
 curl --fail --location --retry 3 \
-    "https://github.com/libffi/libffi/releases/download/v3.4.6/libffi-3.4.6.tar.gz" \
+    "https://github.com/libffi/libffi/releases/download/v${LIBFFI_VERSION}/libffi-${LIBFFI_VERSION}.tar.gz" \
     --output "${LIBFFI_SOURCE}.tar.gz"
 mkdir -p "$LIBFFI_SOURCE"
 tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
 (
     cd "$LIBFFI_SOURCE"
-    # libffi 3.4.6's --only-ios still generates obsolete i386/armv7 targets.
+    # libffi's --only-ios still generates obsolete i386/armv7 targets.
     # Xcode 16 no longer ships an i386 simulator toolchain, so generate only
     # the arm64 device headers and archive required by this iOS build.
     sed -i.bak -E \
