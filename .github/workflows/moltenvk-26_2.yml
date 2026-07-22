@@ -95,6 +95,8 @@ jobs:
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/util/spvc/Spvc.class'
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/vulkan/VkVertexInputBindingDivisorDescription.class'
           javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.glfw.GLFW | grep -q 'glfwSetPreeditCallback'
+          javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.system.JNI | grep 'invokeI(boolean, long)' >/dev/null
+          javap -classpath JavaApp/build/lwjgl.jar -c org.lwjgl.glfw.GLFW | grep 'JNI.invokeI:(ZJ)I' >/dev/null
 
       - name: Upload dependency overlay
         uses: actions/upload-artifact@v4

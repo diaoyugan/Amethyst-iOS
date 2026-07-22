@@ -10,6 +10,7 @@ AMETHYST_ROOT=$(cd "$1" && pwd)
 OVERLAY_OUTPUT=$2
 LWJGL_VERSION=3.4.1
 LWJGL_REVISION=b800ccffab14396fc529ddb6c931b7c5c5226763
+LWJGL_CORE_UNSAFE_SHA1=129e06a04f93992cb2a45172435b21fc4b60dd7d
 LIBFFI_VERSION=3.5.2
 LWJGL_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-lwjgl-${LWJGL_VERSION}"
 LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-${LIBFFI_VERSION}"
@@ -93,39 +94,22 @@ touch "$LWJGL_SOURCE/bin/libs/native/macos/arm64/touch.txt"
 
 export LWJGL_BUILD_ARCH=arm64
 export LWJGL_BUILD_OFFLINE=1
-
-# The JNI generator only emits signatures used by the bindings enabled for the
-# current build. We package the complete Maven release jars below, so keep the
-# complete release JNI bridge instead of the reduced file generated for this
-# iOS-only module selection.
-LWJGL_FULL_JNI_SOURCE="$LWJGL_SOURCE/modules/lwjgl/core/src/generated/c/org_lwjgl_system_JNI.c"
-LWJGL_FULL_JNI_BACKUP="${RUNNER_TEMP:-/tmp}/org_lwjgl_system_JNI-3.4.1-full.c"
-cp "$LWJGL_FULL_JNI_SOURCE" "$LWJGL_FULL_JNI_BACKUP"
-
-LWJGL_ANT_FLAGS=(
-    -Dplatform.macos=true
-    -Dbinding.assimp=false -Dbinding.bgfx=false -Dbinding.cuda=false
-    -Dbinding.egl=false -Dbinding.fmod=false -Dbinding.harfbuzz=false
-    -Dbinding.hwloc=false -Dbinding.jawt=false -Dbinding.jemalloc=false -Dbinding.ktx=false
-    -Dbinding.libdivide=false -Dbinding.llvm=false -Dbinding.lmdb=false
-    -Dbinding.lz4=false -Dbinding.meow=false -Dbinding.meshoptimizer=false
-    -Dbinding.msdfgen=false -Dbinding.nanovg=false -Dbinding.nfd=false
-    -Dbinding.nuklear=false -Dbinding.odbc=false -Dbinding.opencl=false
-    -Dbinding.opengles=false -Dbinding.openvr=false -Dbinding.openxr=false
-    -Dbinding.opus=false -Dbinding.par=false -Dbinding.remotery=false
-    -Dbinding.renderdoc=false -Dbinding.rpmalloc=false -Dbinding.sdl=false -Dbinding.spng=false
-    -Dbinding.sse=false -Dbinding.tinyexr=false -Dbinding.tootle=false
-    -Dbinding.xxhash=false -Dbinding.yoga=false -Dbinding.zstd=false
-    -Djavadoc.skip=true
-)
 (
     cd "$LWJGL_SOURCE"
-    ant "${LWJGL_ANT_FLAGS[@]}" compile-templates generate
-    cp "$LWJGL_FULL_JNI_BACKUP" "$LWJGL_FULL_JNI_SOURCE"
-    grep -F 'Java_org_lwjgl_system_JNI_invokeI__ZJ' "$LWJGL_FULL_JNI_SOURCE" >/dev/null
-    echo "Restored full JNI bridge ($(wc -l < "$LWJGL_FULL_JNI_SOURCE") lines)"
-    ant "${LWJGL_ANT_FLAGS[@]}" compile-native
-    grep -F 'Java_org_lwjgl_system_JNI_invokeI__ZJ' "$LWJGL_FULL_JNI_SOURCE" >/dev/null
+    ant -Dplatform.macos=true \
+        -Dbinding.assimp=false -Dbinding.bgfx=false -Dbinding.cuda=false \
+        -Dbinding.egl=false -Dbinding.fmod=false -Dbinding.harfbuzz=false \
+        -Dbinding.hwloc=false -Dbinding.jawt=false -Dbinding.jemalloc=false -Dbinding.ktx=false \
+        -Dbinding.libdivide=false -Dbinding.llvm=false -Dbinding.lmdb=false \
+        -Dbinding.lz4=false -Dbinding.meow=false -Dbinding.meshoptimizer=false \
+        -Dbinding.msdfgen=false -Dbinding.nanovg=false -Dbinding.nfd=false \
+        -Dbinding.nuklear=false -Dbinding.odbc=false -Dbinding.opencl=false \
+        -Dbinding.opengles=false -Dbinding.openvr=false -Dbinding.openxr=false \
+        -Dbinding.opus=false -Dbinding.par=false -Dbinding.remotery=false \
+        -Dbinding.renderdoc=false -Dbinding.rpmalloc=false -Dbinding.sdl=false -Dbinding.spng=false \
+        -Dbinding.sse=false -Dbinding.tinyexr=false -Dbinding.tootle=false \
+        -Dbinding.xxhash=false -Dbinding.yoga=false -Dbinding.zstd=false \
+        -Djavadoc.skip=true compile-templates compile-native
 )
 
 FRAMEWORKS="$OVERLAY_OUTPUT/Natives/resources/Frameworks"
@@ -135,10 +119,16 @@ find "$LWJGL_NATIVE" -name 'liblwjgl*.dylib' -exec cp {} "$FRAMEWORKS" \;
 
 MODULES=(lwjgl lwjgl-freetype lwjgl-glfw lwjgl-jemalloc lwjgl-openal lwjgl-opengl lwjgl-shaderc lwjgl-spvc lwjgl-stb lwjgl-tinyfd lwjgl-vma lwjgl-vulkan)
 for module in "${MODULES[@]}"; do
+    artifact="${module}-${LWJGL_VERSION}.jar"
+    if [[ "$module" == "lwjgl" ]]; then
+        # Minecraft 26.2 selects LWJGL's Unsafe/JNI backend on Java 25.
+        artifact="${module}-${LWJGL_VERSION}-unsafe.jar"
+    fi
     curl --fail --location --retry 3 \
-        "https://repo1.maven.org/maven2/org/lwjgl/${module}/${LWJGL_VERSION}/${module}-${LWJGL_VERSION}.jar" \
+        "https://repo1.maven.org/maven2/org/lwjgl/${module}/${LWJGL_VERSION}/${artifact}" \
         --output "$JARS/${module}.jar"
 done
+echo "$LWJGL_CORE_UNSAFE_SHA1  $JARS/lwjgl.jar" | shasum -a 1 -c -
 
 # Verify that every produced native is an arm64 iOS Mach-O before publishing it.
 while IFS= read -r dylib; do
@@ -146,12 +136,12 @@ while IFS= read -r dylib; do
     xcrun vtool -show-build "$dylib" | grep -q 'platform IOS'
 done < <(find "$FRAMEWORKS" -name '*.dylib' -print)
 
-# GLFW 3.4.1 calls this overload during glfwInit. Fail the dependency build
-# before caching an incomplete core native again.
+# Amethyst's GLFW shim calls this overload during glfwInit. Fail the dependency
+# build before caching a core native that does not match the patched Java class.
 echo "LWJGL core invokeI exports:"
-xcrun nm -gU "$FRAMEWORKS/liblwjgl.dylib" \
+xcrun dyld_info -exports "$FRAMEWORKS/liblwjgl.dylib" \
     | grep '_Java_org_lwjgl_system_JNI_invokeI' || true
-xcrun nm -gU "$FRAMEWORKS/liblwjgl.dylib" \
+xcrun dyld_info -exports "$FRAMEWORKS/liblwjgl.dylib" \
     | grep '_Java_org_lwjgl_system_JNI_invokeI__ZJ' >/dev/null
 
 echo "LWJGL ${LWJGL_VERSION} iOS overlay created at $OVERLAY_OUTPUT"

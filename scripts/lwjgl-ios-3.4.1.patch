@@ -28,6 +28,18 @@ index 42044eac..10000000 100644
 -    nativeImport("<objc/objc-runtime.h>")
 +    nativeImport("<objc/runtime.h>")
 
+diff --git a/modules/generator/src/main/kotlin/org/lwjgl/generator/JNI.kt b/modules/generator/src/main/kotlin/org/lwjgl/generator/JNI.kt
+index 8ae456b2..10000000 100644
+--- a/modules/generator/src/main/kotlin/org/lwjgl/generator/JNI.kt
++++ b/modules/generator/src/main/kotlin/org/lwjgl/generator/JNI.kt
+@@ -23,3 +23,7 @@ object JNI : GeneratorTargetNative(Module.CORE, "JNI") {
+         // invokePPV(NSView, setWantsBestResolutionOpenGLSurface, true/false, objc_msgSend);
+         signatures[Signature(CallingConvention.DEFAULT, void, listOf(opaque_p, opaque_p, bool))] = Unit
++
++        // Amethyst's GLFW shim maps glfwInit() to pojavInit(BOOL).
++        signatures[Signature(CallingConvention.DEFAULT, int, listOf(bool))] = Unit
+     }
+
 diff --git a/config/macos/build.xml b/config/macos/build.xml
 index 98204971..10000000 100644
 --- a/config/macos/build.xml
