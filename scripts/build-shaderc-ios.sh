@@ -11,6 +11,7 @@ SHADERC_REVISION=301b4ede53d59b68bf55f95bb26412d9233c8187
 OVERLAY_OUTPUT=$1
 SHADERC_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-shaderc-${SHADERC_VERSION}"
 SHADERC_BUILD="${RUNNER_TEMP:-/tmp}/amethyst-shaderc-${SHADERC_VERSION}-build"
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 if [[ -z "$OVERLAY_OUTPUT" || "$OVERLAY_OUTPUT" == "/" ]]; then
     echo "refusing unsafe overlay output path: $OVERLAY_OUTPUT" >&2
@@ -31,6 +32,8 @@ if [[ "$FETCHED_REVISION" != "$SHADERC_REVISION" ]]; then
     exit 1
 fi
 git -C "$SHADERC_SOURCE" checkout --detach "$SHADERC_REVISION"
+git -C "$SHADERC_SOURCE" apply --check "$SCRIPT_DIR/shaderc-ios.patch"
+git -C "$SHADERC_SOURCE" apply "$SCRIPT_DIR/shaderc-ios.patch"
 
 # Shaderc's DEPS file pins glslang, SPIRV-Headers and SPIRV-Tools revisions.
 python3 "$SHADERC_SOURCE/utils/git-sync-deps"
@@ -49,7 +52,6 @@ cmake -S "$SHADERC_SOURCE" -B "$SHADERC_BUILD" -G Ninja \
     -DSHADERC_SKIP_COPYRIGHT_CHECK=ON \
     -DSHADERC_SKIP_INSTALL=ON \
     -DSHADERC_ENABLE_WERROR_COMPILE=OFF \
-    -DSKIP_GLSLANG_INSTALL=ON \
     -DENABLE_GLSLANG_BINARIES=OFF \
     -DSPIRV_SKIP_TESTS=ON \
     -DSPIRV_SKIP_EXECUTABLES=ON

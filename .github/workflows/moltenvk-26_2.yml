@@ -12,6 +12,7 @@ on:
       - '.github/workflows/moltenvk-26_2.yml'
       - 'scripts/build-lwjgl-ios-3.4.1.sh'
       - 'scripts/build-shaderc-ios.sh'
+      - 'scripts/shaderc-ios.patch'
       - 'scripts/lwjgl-ios-3.4.1.patch'
       - 'scripts/mobileglues-ios-symbol-lookup.patch'
       - 'JavaApp/libs/lwjgl/**'
@@ -56,7 +57,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/shaderc-overlay
-          key: amethyst-ios-shaderc-${{ runner.os }}-${{ runner.arch }}-${{ env.SHADERC_VERSION }}-${{ hashFiles('scripts/build-shaderc-ios.sh') }}
+          key: amethyst-ios-shaderc-${{ runner.os }}-${{ runner.arch }}-${{ env.SHADERC_VERSION }}-${{ hashFiles('scripts/build-shaderc-ios.sh', 'scripts/shaderc-ios.patch') }}
 
       - name: Seed cache from a previous successful dependency job
         if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id != ''
