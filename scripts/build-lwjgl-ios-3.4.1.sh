@@ -30,7 +30,7 @@ if [[ "$FETCHED_LWJGL_REVISION" != "$LWJGL_REVISION" ]]; then
     exit 1
 fi
 git -C "$LWJGL_SOURCE" checkout --detach "$LWJGL_REVISION"
-git -C "$LWJGL_SOURCE" apply "$AMETHYST_ROOT/scripts/lwjgl-ios-3.4.1.patch"
+git -C "$LWJGL_SOURCE" apply --recount "$AMETHYST_ROOT/scripts/lwjgl-ios-3.4.1.patch"
 
 # Populate the Java build toolchain while network access is enabled. Native
 # dependencies are seeded below with iOS builds, then native downloads are disabled.

@@ -15,6 +15,19 @@ index 3907bc6a..10000000 100644
              </and>
          </condition>
 
+diff --git a/modules/lwjgl/core/src/templates/kotlin/core/macos/templates/ObjC.kt b/modules/lwjgl/core/src/templates/kotlin/core/macos/templates/ObjC.kt
+index 42044eac..10000000 100644
+--- a/modules/lwjgl/core/src/templates/kotlin/core/macos/templates/ObjC.kt
++++ b/modules/lwjgl/core/src/templates/kotlin/core/macos/templates/ObjC.kt
+@@ -10,6 +10,6 @@
+ val objc_runtime = "ObjCRuntime".nativeClass(
+     Module.CORE_MACOS,
+     nativeSubPath = "macos",
+     binding = simpleBinding(Module.CORE_MACOS, "objc")
+ ) {
+-    nativeImport("<objc/objc-runtime.h>")
++    nativeImport("<objc/runtime.h>")
+
 diff --git a/config/macos/build.xml b/config/macos/build.xml
 index 98204971..10000000 100644
 --- a/config/macos/build.xml
