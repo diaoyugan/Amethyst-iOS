@@ -116,6 +116,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Select Xcode 26.3
+        run: |
+          sudo xcode-select --switch /Applications/Xcode_26.3.app/Contents/Developer
+          xcodebuild -version
+
       - name: Set up Zulu Java 8
         uses: actions/setup-java@v4
         with:
