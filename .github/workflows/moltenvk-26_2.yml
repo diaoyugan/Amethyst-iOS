@@ -60,7 +60,8 @@ jobs:
 
       - name: Compile launcher Java and verify 26.2 classes
         run: |
-          gmake -C JavaApp clean all BOOTJDK="$JAVA_HOME/bin"
+          gmake -C JavaApp clean all BOOTJDK="$JAVA_HOME/bin" \
+            EXTRA_JCFLAGS="--add-exports=java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports=java.desktop/sun.font=ALL-UNNAMED"
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/util/spvc/Spvc.class'
           jar tf JavaApp/build/lwjgl.jar | grep -q 'org/lwjgl/vulkan/VkVertexInputBindingDivisorDescription.class'
           javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.glfw.GLFW | grep -q 'glfwSetPreeditCallback'
