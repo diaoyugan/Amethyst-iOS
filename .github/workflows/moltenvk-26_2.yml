@@ -2,6 +2,11 @@ name: Minecraft 26.2 MoltenVK dependencies
 
 on:
   workflow_dispatch:
+    inputs:
+      dependency_run_id:
+        description: Run ID containing a previously verified dependency overlay
+        required: false
+        type: string
   pull_request:
     paths:
       - '.github/workflows/moltenvk-26_2.yml'
@@ -15,6 +20,7 @@ on:
       - 'Natives/JavaLauncher.m'
 
 permissions:
+  actions: read
   contents: read
 
 env:
@@ -32,6 +38,23 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Restore iOS Vulkan dependency cache
+        id: dependency-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/overlay
+          key: amethyst-ios-vulkan-${{ runner.os }}-${{ runner.arch }}-${{ env.MOLTENVK_VERSION }}-${{ hashFiles('scripts/build-lwjgl-ios-3.4.1.sh', 'scripts/lwjgl-ios-3.4.1.patch') }}
+
+      - name: Seed cache from a previous successful dependency job
+        if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: amethyst-minecraft-26.2-ios-dependencies
+          path: ${{ runner.temp }}/overlay
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.dependency_run_id }}
+
       - name: Set up Java 25
         uses: actions/setup-java@v4
         with:
@@ -39,12 +62,19 @@ jobs:
           java-version: '25'
 
       - name: Install build tools
+        if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id == ''
         run: brew install ant automake autoconf libtool cmake ninja make
 
+      - name: Install cached-overlay verification tools
+        if: steps.dependency-cache.outputs.cache-hit == 'true' || inputs.dependency_run_id != ''
+        run: brew install make
+
       - name: Build LWJGL 3.4.1 for iOS
+        if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id == ''
         run: bash scripts/build-lwjgl-ios-3.4.1.sh "$GITHUB_WORKSPACE" "$RUNNER_TEMP/overlay"
 
       - name: Build MoltenVK for iOS
+        if: steps.dependency-cache.outputs.cache-hit != 'true' && inputs.dependency_run_id == ''
         run: |
           git clone --depth 1 --branch "$MOLTENVK_VERSION" https://github.com/KhronosGroup/MoltenVK.git "$RUNNER_TEMP/MoltenVK"
           cd "$RUNNER_TEMP/MoltenVK"
