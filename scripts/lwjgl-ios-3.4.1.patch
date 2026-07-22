@@ -1,3 +1,20 @@
+diff --git a/build.xml b/build.xml
+index 3907bc6a..10000000 100644
+--- a/build.xml
++++ b/build.xml
+@@ -161,8 +161,10 @@
+         <condition property="egl_types">
+             <and>
+                 <isfalse value="${binding.egl}"/>
+-                <istrue value="${binding.glfw}"/>
+-                <istrue value="${binding.openxr}"/>
++                <or>
++                    <istrue value="${binding.glfw}"/>
++                    <istrue value="${binding.openxr}"/>
++                </or>
+             </and>
+         </condition>
+
 diff --git a/config/macos/build.xml b/config/macos/build.xml
 index 98204971..10000000 100644
 --- a/config/macos/build.xml
