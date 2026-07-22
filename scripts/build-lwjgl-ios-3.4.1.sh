@@ -13,6 +13,7 @@ LWJGL_REVISION=b800ccffab14396fc529ddb6c931b7c5c5226763
 LIBFFI_VERSION=3.4.8
 LWJGL_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-lwjgl-${LWJGL_VERSION}"
 LIBFFI_SOURCE="${RUNNER_TEMP:-/tmp}/amethyst-libffi-${LIBFFI_VERSION}"
+LIBFFI_ARCHIVE="$LIBFFI_SOURCE/build_iphoneos-arm64/.libs/libffi.a"
 
 if [[ -z "$OVERLAY_OUTPUT" || "$OVERLAY_OUTPUT" == "/" || "$OVERLAY_OUTPUT" == "$AMETHYST_ROOT" ]]; then
     echo "refusing unsafe overlay output path: $OVERLAY_OUTPUT" >&2
@@ -50,14 +51,12 @@ tar -xzf "${LIBFFI_SOURCE}.tar.gz" --strip-components=1 -C "$LIBFFI_SOURCE"
         '/build_target\(ios_/ { /ios_device_arm64_platform/! s/^([[:space:]]*)/\1#/; }' \
         generate-darwin-source-and-headers.py
     python3 generate-darwin-source-and-headers.py --only-ios
-    # The legacy Xcode project still tries to publish headers for every iOS
-    # architecture even though only the arm64 configuration was generated.
-    sed -i.bak -E \
-        '/(ffi|ffitarget)_(armv7|x86_64)\.h/d' \
-        libffi.xcodeproj/project.pbxproj
-    xcodebuild -arch arm64 -sdk iphoneos -target libffi-iOS \
-        IPHONEOS_DEPLOYMENT_TARGET=12.0
-    xcrun lipo build/Release-iphoneos/libffi.a -verify_arch arm64
+    # build_target configured this directory with an explicit
+    # "xcrun -sdk iphoneos clang -target arm64-apple-ios" compiler. Build it
+    # directly instead of using libffi's legacy multi-platform Xcode project,
+    # which emits macOS-tagged objects on current Apple Silicon runners.
+    make -C build_iphoneos-arm64 -j"$(sysctl -n hw.logicalcpu)"
+    xcrun lipo "$LIBFFI_ARCHIVE" -verify_arch arm64
 )
 
 LWJGL_NATIVE="$LWJGL_SOURCE/bin/libs/native/macos/arm64/org/lwjgl"
@@ -68,7 +67,7 @@ mkdir -p \
     "$LWJGL_NATIVE/shaderc" \
     "$LWJGL_NATIVE/spvc" \
     "$LWJGL_NATIVE/vulkan"
-cp "$LIBFFI_SOURCE/build/Release-iphoneos/libffi.a" "$LWJGL_NATIVE/core/libffi.a"
+cp "$LIBFFI_ARCHIVE" "$LWJGL_NATIVE/core/libffi.a"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libfreetype.dylib" "$LWJGL_NATIVE/freetype/libfreetype.dylib"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libopenal.dylib" "$LWJGL_NATIVE/openal/libopenal.dylib"
 cp "$AMETHYST_ROOT/Natives/resources/Frameworks/libshaderc.dylib" "$LWJGL_NATIVE/shaderc/libshaderc.dylib"
