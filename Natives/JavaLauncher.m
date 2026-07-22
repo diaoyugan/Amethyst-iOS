@@ -151,6 +151,7 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     BOOL launchJar = NO;
     NSString *gameDir;
     NSString *defaultJRETag;
+    NSString *graphicsBackend;
     NSCAssert(launchTarget, @"Unexpected nil launchTarget");
     if ([launchTarget isKindOfClass:NSDictionary.class]) {
         // Get preferred Java version from current profile
@@ -173,6 +174,7 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
         NSString *renderer = [PLProfiles resolveKeyForCurrentProfile:@"renderer"];
         NSLog(@"[JavaLauncher] RENDERER is set to %@\n", renderer);
         setenv("POJAV_RENDERER", renderer.UTF8String, 1);
+        graphicsBackend = PLProfiles.current.selectedProfile[@"graphicsBackend"];
         // Setup gameDir
         gameDir = [NSString stringWithFormat:@"%s/instances/%@/%@",
             getenv("POJAV_HOME"), getPrefObject(@"general.game_directory"),
@@ -226,7 +228,12 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     }
 
     // Setup options.txt
-    [MinecraftOptionUtils setupOptionsAtGameDir:gameDir];
+    BOOL useVulkan = !launchJar
+        && [graphicsBackend isEqualToString:@"vulkan"]
+        && [MinecraftOptionUtils supportsVulkanForVersionMetadata:launchTarget];
+    [MinecraftOptionUtils setupOptionsAtGameDir:gameDir
+                       preferredGraphicsBackend:graphicsBackend
+                                versionMetadata:launchJar ? nil : launchTarget];
     
     int margc = -1;
     const char *margv[1000];
@@ -245,6 +252,10 @@ int launchJVM(NSString *username, id launchTarget, int width, int height, int mi
     margv[++margc] = [NSString stringWithFormat:@"-DUIScreen.maximumFramesPerSecond=%d", (int)UIScreen.mainScreen.maximumFramesPerSecond].UTF8String;
     margv[++margc] = "-Dorg.lwjgl.glfw.checkThread0=false";
     margv[++margc] = "-Dorg.lwjgl.system.allocator=system";
+    if (useVulkan) {
+        margv[++margc] = "-Dorg.lwjgl.vulkan.libname=libMoltenVK.dylib";
+        margv[++margc] = "-Dorg.lwjgl.spvc.libname=libspirv-cross-c-shared.0.dylib";
+    }
     //margv[++margc] = "-Dorg.lwjgl.util.NoChecks=true";
     margv[++margc] = "-Dlog4j2.formatMsgNoLookups=true";
 

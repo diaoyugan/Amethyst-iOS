@@ -188,6 +188,11 @@
 
 "preference.detail.renderer" = "Change the OpenGL render engine to use. Zink is temporarily disabled on iOS 16 and later to diagnose issues.";
 
+"preference.profile.title.graphics_backend" = "Graphics API (Minecraft 26.2+)";
+"preference.profile.graphics_backend.inherit" = "Use game setting";
+"preference.profile.graphics_backend.default" = "Minecraft default";
+"preference.profile.graphics_backend.moltenvk" = "MoltenVK (Vulkan)";
+
 "preference.title.resolution" = "Resolution (%)";
 "preference.detail.resolution" = "Allows you to decrease the game resolution.";
 "preference.title.max_framerate" = "Maximum framerate";

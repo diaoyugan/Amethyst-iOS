@@ -74,6 +74,7 @@ public class PojavLauncher {
         }
 
         System.setProperty("org.lwjgl.vulkan.libname", "libMoltenVK.dylib");
+        System.setProperty("org.lwjgl.spvc.libname", "libspirv-cross-c-shared.0.dylib");
 
         MinecraftAccount account = MinecraftAccount.load(args[0]);
         JMinecraftVersionList.Version version = Tools.getVersionInfo(args[1]);

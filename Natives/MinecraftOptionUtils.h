@@ -6,7 +6,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic) NSString *optionsPath;
 
-+ (void)setupOptionsAtGameDir:(NSString *)gameDir;
++ (void)setupOptionsAtGameDir:(NSString *)gameDir
+     preferredGraphicsBackend:(nullable NSString *)graphicsBackend
+              versionMetadata:(nullable NSDictionary *)versionMetadata;
++ (BOOL)supportsVulkanForVersionMetadata:(NSDictionary *)versionMetadata;
 + (instancetype)sharedInstance;
 
 - (void)loadFromPath:(NSString *)optionsPath;

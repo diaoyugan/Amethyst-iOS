@@ -116,6 +116,18 @@
               @"pickKeys": rendererKeys,
               @"pickList": rendererList
             },
+            @{@"key": @"graphicsBackend",
+              @"icon": @"display",
+              @"title": @"preference.profile.title.graphics_backend",
+              @"type": self.typePickField,
+              @"pickKeys": @[@"(default)", @"default", @"opengl", @"vulkan"],
+              @"pickList": @[
+                  localize(@"preference.profile.graphics_backend.inherit", nil),
+                  localize(@"preference.profile.graphics_backend.default", nil),
+                  @"OpenGL",
+                  localize(@"preference.profile.graphics_backend.moltenvk", nil)
+              ]
+            },
             // Control settings
             @{@"key": @"defaultTouchCtrl",
               @"icon": @"hand.tap",

@@ -809,6 +809,11 @@ public class GLFW
         return GLFW_PLATFORM_X11;
     }
 
+    public static boolean glfwPlatformSupported(int platform) {
+        // The compatibility layer historically identifies itself as X11.
+        return platform == GLFW_PLATFORM_X11;
+    }
+
     @NativeType("GLFWwindow *")
     public static long glfwGetCurrentContext() {
         long __functionAddress = Functions.GetCurrentContext;
@@ -1356,5 +1361,24 @@ public class GLFW
         //return Arrays.stream(glGetString(GL_EXTENSIONS).split(" ")).anyMatch(ext::equals);
         // Fast path, but will return true if one has the same prefix
         return glGetString(GL_EXTENSIONS).contains(ext);
+    }
+
+    /**
+     * GLFW's preedit callbacks were added to the LWJGL API used by Minecraft 26.2.
+     * iOS text composition is still delivered through CallbackBridge, so these
+     * methods currently provide binary compatibility without native registration.
+     */
+    public static @Nullable GLFWPreeditCallback glfwSetPreeditCallback(
+        @NativeType("GLFWwindow *") long window,
+        @NativeType("GLFWpreeditfun") @Nullable GLFWPreeditCallbackI callback
+    ) {
+        return null;
+    }
+
+    public static @Nullable GLFWIMEStatusCallback glfwSetIMEStatusCallback(
+        @NativeType("GLFWwindow *") long window,
+        @NativeType("GLFWimestatusfun") @Nullable GLFWIMEStatusCallbackI callback
+    ) {
+        return null;
     }
 }

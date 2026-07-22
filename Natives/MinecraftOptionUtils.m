@@ -7,7 +7,9 @@
 
 @implementation MinecraftOptionUtils
 
-+ (void)setupOptionsAtGameDir:(NSString *)gameDir {
++ (void)setupOptionsAtGameDir:(NSString *)gameDir
+     preferredGraphicsBackend:(nullable NSString *)graphicsBackend
+              versionMetadata:(nullable NSDictionary *)versionMetadata {
     NSAssert(windowWidth > 0 && windowHeight > 0, @"called before setting windowWidth/windowHeight?");
     MinecraftOptionUtils *options = [MinecraftOptionUtils sharedInstance];
     options.optionsPath = [gameDir stringByAppendingPathComponent:@"options.txt"];
@@ -21,7 +23,41 @@
     [options setDefaultForKey:@"particles" value:@"1"];
     [options setDefaultForKey:@"renderDistance" value:@"2"];
     [options setDefaultForKey:@"simulationDistance" value:@"5"];
+
+    if (graphicsBackend.length > 0) {
+        if (versionMetadata && [self supportsVulkanForVersionMetadata:versionMetadata]) {
+            if ([graphicsBackend isEqualToString:@"default"]
+                    || [graphicsBackend isEqualToString:@"opengl"]
+                    || [graphicsBackend isEqualToString:@"vulkan"]) {
+                // Minecraft 26.2 introduced this option. "vulkan" selects MoltenVK on Apple platforms.
+                [options setKey:@"preferredGraphicsBackend" value:graphicsBackend];
+                NSLog(@"[MinecraftOptionUtils] Preferred graphics backend is set to %@", graphicsBackend);
+            } else {
+                NSLog(@"[MinecraftOptionUtils] Ignoring unknown graphics backend: %@", graphicsBackend);
+            }
+        } else {
+            NSString *version = versionMetadata[@"inheritsFrom"] ?: versionMetadata[@"id"] ?: @"unknown";
+            NSLog(@"[MinecraftOptionUtils] Ignoring graphics backend %@ for unsupported Minecraft version %@", graphicsBackend, version);
+        }
+    }
     [options save];
+}
+
++ (BOOL)supportsVulkanForVersionMetadata:(NSDictionary *)versionMetadata {
+    NSString *version = versionMetadata[@"inheritsFrom"] ?: versionMetadata[@"id"];
+    if (![version isKindOfClass:NSString.class]) return NO;
+
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"^(\\d+)\\.(\\d+)"
+                                                                                options:0
+                                                                                  error:nil];
+    NSTextCheckingResult *match = [expression firstMatchInString:version
+                                                         options:0
+                                                           range:NSMakeRange(0, version.length)];
+    if (!match || match.numberOfRanges < 3) return NO;
+
+    NSInteger major = [[version substringWithRange:[match rangeAtIndex:1]] integerValue];
+    NSInteger minor = [[version substringWithRange:[match rangeAtIndex:2]] integerValue];
+    return major > 26 || (major == 26 && minor >= 2);
 }
 
 + (instancetype)sharedInstance {
