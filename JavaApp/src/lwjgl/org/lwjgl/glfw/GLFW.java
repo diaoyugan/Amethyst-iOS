@@ -320,13 +320,16 @@ public class GLFW
     GLFW_STICKY_KEYS          = 0x33002,
     GLFW_STICKY_MOUSE_BUTTONS = 0x33003,
     GLFW_LOCK_KEY_MODS        = 0x33004,
-    GLFW_RAW_MOUSE_MOTION     = 0x33005;
+    GLFW_RAW_MOUSE_MOTION     = 0x33005,
+    GLFW_UNLIMITED_MOUSE_BUTTONS = 0x33006,
+    GLFW_IME                  = 0x33007;
 
     /** Cursor state. */
     public static final int
     GLFW_CURSOR_NORMAL   = 0x34001,
     GLFW_CURSOR_HIDDEN   = 0x34002,
-    GLFW_CURSOR_DISABLED = 0x34003;
+    GLFW_CURSOR_DISABLED = 0x34003,
+    GLFW_CURSOR_CAPTURED = 0x34004;
 
     /** The regular arrow cursor shape. */
     public static final int GLFW_ARROW_CURSOR = 0x36001;
@@ -1103,7 +1106,14 @@ public class GLFW
     public static void glfwPostEmptyEvent() {}
 
     public static int glfwGetInputMode(@NativeType("GLFWwindow *") long window, int mode) {
-        return internalGetWindow(window).inputModes.get(mode);
+        Integer value = internalGetWindow(window).inputModes.get(mode);
+        if (value != null) {
+            return value;
+        }
+
+        // GLFW initializes the cursor to normal and all boolean input modes to false.
+        // In particular, Minecraft 26.2 queries GLFW_IME before ever setting it.
+        return mode == GLFW_CURSOR ? GLFW_CURSOR_NORMAL : GLFW_FALSE;
     }
 
     public static void glfwSetInputMode(@NativeType("GLFWwindow *") long window, int mode, int value) {

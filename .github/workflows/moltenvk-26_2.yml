@@ -129,6 +129,8 @@ jobs:
           grep -q 'glfwSetPreeditCallback' <<<"$GLFW_API"
           grep -q 'java.lang.String glfwGetMonitorName(long)' <<<"$GLFW_API"
           grep -q 'void glfwSetPreeditCursorRectangle(long, int, int, int, int)' <<<"$GLFW_API"
+          javap -classpath JavaApp/build/lwjgl.jar -constants org.lwjgl.glfw.GLFW | grep -q 'GLFW_IME = 208903'
+          grep -q 'Minecraft 26.2 queries GLFW_IME before ever setting it' JavaApp/src/lwjgl/org/lwjgl/glfw/GLFW.java
           javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.system.JNI | grep 'invokeI(boolean, long)' >/dev/null
           javap -classpath JavaApp/build/lwjgl.jar -c org.lwjgl.glfw.GLFW | grep 'JNI.invokeI:(ZJ)I' >/dev/null
 
