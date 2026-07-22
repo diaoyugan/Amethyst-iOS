@@ -120,7 +120,7 @@ LWJGL_ANT_FLAGS=(
 )
 (
     cd "$LWJGL_SOURCE"
-    ant "${LWJGL_ANT_FLAGS[@]}" compile-templates
+    ant "${LWJGL_ANT_FLAGS[@]}" compile-templates generate
     cp "$LWJGL_FULL_JNI_BACKUP" "$LWJGL_FULL_JNI_SOURCE"
     ant "${LWJGL_ANT_FLAGS[@]}" compile-native
 )
