@@ -22,7 +22,7 @@ It builds and validates:
 - LWJGL 3.4.1 arm64 iOS native libraries;
 - MoltenVK 1.4.1 for iOS;
 - the matching LWJGL Java modules, including shaderc, SPIRV-Cross and VMA;
-- a test IPA on the project's macOS runner.
+- a test IPA on a public GitHub-hosted macOS runner.
 
 The workflow publishes both a dependency overlay and the test IPA. The overlay keeps
 the platform-specific binaries reproducible instead of requiring an iOS toolchain on
