@@ -70,10 +70,15 @@ for relative_path in "${native_files[@]}"; do
     test "$(lipo -archs "$native_file")" = "arm64"
 done
 
-strings -a "$full_app/AngelAuraAmethyst" | grep -Fxq "$expected_commit"
+grep -aFq "$expected_commit" "$full_app/AngelAuraAmethyst"
 
-"$JAVA_HOME/bin/javap" -classpath "$full_app/libs/lwjgl.jar" -constants org.lwjgl.glfw.GLFW \
-    | grep -q 'GLFW_IME = 208903'
+glfw_api=$(
+    "$JAVA_HOME/bin/javap" \
+        -classpath "$full_app/libs/lwjgl.jar" \
+        -constants \
+        org.lwjgl.glfw.GLFW
+)
+grep -q 'GLFW_IME = 208903' <<<"$glfw_api"
 
 mkdir -p "$audit_root/test-classes"
 "$JAVA_HOME/bin/javac" \
