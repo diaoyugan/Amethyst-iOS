@@ -11,6 +11,17 @@ public class GLFWWindowProperties {
     public long monitor;
     public Map<Integer, Integer> inputModes = new HashMap<>();
     public Map<Integer, Integer> windowAttribs = new HashMap<>();
+
+    public int getInputMode(int mode) {
+        Integer value = inputModes.get(mode);
+        if (value != null) {
+            return value;
+        }
+
+        // GLFW initializes the cursor to normal and all boolean input modes to false.
+        // In particular, Minecraft 26.2 queries GLFW_IME before ever setting it.
+        return mode == GLFW.GLFW_CURSOR ? GLFW.GLFW_CURSOR_NORMAL : GLFW.GLFW_FALSE;
+    }
     
     @Override
     public String toString() {

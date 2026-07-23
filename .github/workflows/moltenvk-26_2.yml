@@ -130,7 +130,7 @@ jobs:
           grep -q 'java.lang.String glfwGetMonitorName(long)' <<<"$GLFW_API"
           grep -q 'void glfwSetPreeditCursorRectangle(long, int, int, int, int)' <<<"$GLFW_API"
           javap -classpath JavaApp/build/lwjgl.jar -constants org.lwjgl.glfw.GLFW | grep -q 'GLFW_IME = 208903'
-          grep -q 'Minecraft 26.2 queries GLFW_IME before ever setting it' JavaApp/src/lwjgl/org/lwjgl/glfw/GLFW.java
+          grep -q 'Minecraft 26.2 queries GLFW_IME before ever setting it' JavaApp/src/lwjgl/org/lwjgl/glfw/GLFWWindowProperties.java
           javap -classpath JavaApp/build/lwjgl.jar org.lwjgl.system.JNI | grep 'invokeI(boolean, long)' >/dev/null
           javap -classpath JavaApp/build/lwjgl.jar -c org.lwjgl.glfw.GLFW | grep 'JNI.invokeI:(ZJ)I' >/dev/null
 
@@ -196,12 +196,24 @@ jobs:
           nm -gU "$MOBILEGLUES_DYLIB" | grep -q ' _glXGetProcAddress$'
           nm -gU "$SHADERC_DYLIB" | grep -q ' _shaderc_compile_options_set_max_id_bound$'
 
+      - name: Audit packaged Minecraft 26.2 compatibility
+        run: |
+          FULL_IPA="artifacts/org.angelauramc.amethyst-1.0-ios.ipa"
+          SLIMMED_IPA="artifacts/org.angelauramc.amethyst.slimmed-1.0-ios.ipa"
+          bash scripts/verify-minecraft-ipa.sh \
+            26.2 \
+            "$FULL_IPA" \
+            "$SLIMMED_IPA" \
+            "${GITHUB_SHA::7}"
+
+          mv "$FULL_IPA" "artifacts/amethyst-minecraft-26.2-moltenvk-${GITHUB_SHA::7}.ipa"
+          mv "$SLIMMED_IPA" "artifacts/amethyst-minecraft-26.2-moltenvk-slimmed-${GITHUB_SHA::7}.ipa"
+
       - name: Upload test IPA
         uses: actions/upload-artifact@v4
         with:
-          name: amethyst-minecraft-26.2-moltenvk-test
+          name: amethyst-minecraft-26.2-moltenvk-${{ github.sha }}
           path: |
-            artifacts/org.angelauramc.amethyst-*-ios.ipa
-            artifacts/org.angelauramc.amethyst.slimmed-*-ios.ipa
+            artifacts/amethyst-minecraft-26.2-moltenvk-*.ipa
             artifacts/AngelAuraAmethyst.dSYM
           if-no-files-found: error

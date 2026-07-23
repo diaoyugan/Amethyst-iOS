@@ -1106,14 +1106,7 @@ public class GLFW
     public static void glfwPostEmptyEvent() {}
 
     public static int glfwGetInputMode(@NativeType("GLFWwindow *") long window, int mode) {
-        Integer value = internalGetWindow(window).inputModes.get(mode);
-        if (value != null) {
-            return value;
-        }
-
-        // GLFW initializes the cursor to normal and all boolean input modes to false.
-        // In particular, Minecraft 26.2 queries GLFW_IME before ever setting it.
-        return mode == GLFW_CURSOR ? GLFW_CURSOR_NORMAL : GLFW_FALSE;
+        return internalGetWindow(window).getInputMode(mode);
     }
 
     public static void glfwSetInputMode(@NativeType("GLFWwindow *") long window, int mode, int value) {
