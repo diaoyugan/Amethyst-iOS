@@ -66,7 +66,7 @@ native_files=(
 
 for relative_path in "${native_files[@]}"; do
     native_file="$full_app/$relative_path"
-    lipo -verify_arch arm64 "$native_file"
+    lipo "$native_file" -verify_arch arm64
     test "$(lipo -archs "$native_file")" = "arm64"
 done
 
